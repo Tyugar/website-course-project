@@ -33,15 +33,12 @@ public class Whisky {
 	public Whisky() {
 	}
 	
-	public Whisky(Long id, String name, String type, String countryOfOrigin, Long alcoholVolume, String description,
-			List<Opinion> opinions) {
-		this.id = id;
+	public Whisky(String name, String type, String countryOfOrigin, Long alcoholVolume, String description) {
 		this.name = name;
 		this.type = type;
 		this.countryOfOrigin = countryOfOrigin;
 		this.alcoholVolume = alcoholVolume;
 		this.description = description;
-		this.opinions = opinions;
 	}
 
 	public Long getId() {

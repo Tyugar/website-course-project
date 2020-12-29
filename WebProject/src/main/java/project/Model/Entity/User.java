@@ -40,15 +40,11 @@ public class User {
 	public User() {
 	}
 	
-	public User(Long id, String nickname, String password, String email, Date createdAt, List<Opinion> opinions,
-			List<Vote> votes) {
-		this.id = id;
+	public User(String nickname, String password, String email, Date createdAt) {
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
 		this.createdAt = createdAt;
-		this.opinions = opinions;
-		this.votes = votes;
 	}
 
 	public Long getId() {

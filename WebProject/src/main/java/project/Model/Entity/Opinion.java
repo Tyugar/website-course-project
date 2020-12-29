@@ -41,17 +41,14 @@ public class Opinion {
 	public Opinion() {
 	}
 	
-	public Opinion(Long id, Date createdAt, Long smell, Long taste, Long finish, String text, Whisky whisky,
-			List<Vote> votes, User user) {
-		super();
-		this.id = id;
+	public Opinion(Date createdAt, Long smell, Long taste, Long finish, String text, Whisky whisky,
+			 User user) {
 		this.createdAt = createdAt;
 		Smell = smell;
 		Taste = taste;
 		Finish = finish;
 		this.text = text;
 		this.whisky = whisky;
-		this.votes = votes;
 		this.user = user;
 	}
 

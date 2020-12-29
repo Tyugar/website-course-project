@@ -29,8 +29,7 @@ public class Vote {
 		
 	}
 	
-	public Vote(Long id, VoteType voteType, Opinion opinion, User user) {
-		this.id = id;
+	public Vote(VoteType voteType, Opinion opinion, User user) {
 		this.voteType = voteType;
 		this.opinion = opinion;
 		this.user = user;
