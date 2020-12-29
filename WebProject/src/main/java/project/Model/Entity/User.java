@@ -37,7 +37,81 @@ public class User {
 	private List<Vote> votes= new ArrayList<>();
 	
 	
+	public User() {
+	}
+	
+	public User(Long id, String nickname, String password, String email, Date createdAt, List<Opinion> opinions,
+			List<Vote> votes) {
+		this.id = id;
+		this.nickname = nickname;
+		this.password = password;
+		this.email = email;
+		this.createdAt = createdAt;
+		this.opinions = opinions;
+		this.votes = votes;
+	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public List<Opinion> getOpinions() {
+		return opinions;
+	}
+
+	public void setOpinions(List<Opinion> opinions) {
+		this.opinions = opinions;
+	}
+
+	public List<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nickname=" + nickname + ", password=" + password + ", email=" + email
+				+ ", createdAt=" + createdAt + ", opinions=" + opinions + ", votes=" + votes + "]";
+	}
 	
 	
 }

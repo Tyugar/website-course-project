@@ -38,6 +38,103 @@ public class Opinion {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	public Opinion() {
+	}
+	
+	public Opinion(Long id, Date createdAt, Long smell, Long taste, Long finish, String text, Whisky whisky,
+			List<Vote> votes, User user) {
+		super();
+		this.id = id;
+		this.createdAt = createdAt;
+		Smell = smell;
+		Taste = taste;
+		Finish = finish;
+		this.text = text;
+		this.whisky = whisky;
+		this.votes = votes;
+		this.user = user;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Long getSmell() {
+		return Smell;
+	}
+
+	public void setSmell(Long smell) {
+		Smell = smell;
+	}
+
+	public Long getTaste() {
+		return Taste;
+	}
+
+	public void setTaste(Long taste) {
+		Taste = taste;
+	}
+
+	public Long getFinish() {
+		return Finish;
+	}
+
+	public void setFinish(Long finish) {
+		Finish = finish;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public Whisky getWhisky() {
+		return whisky;
+	}
+
+	public void setWhisky(Whisky whisky) {
+		this.whisky = whisky;
+	}
+
+	public List<Vote> getVotes() {
+		return votes;
+	}
+
+	public void setVotes(List<Vote> votes) {
+		this.votes = votes;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Opinion [id=" + id + ", createdAt=" + createdAt + ", Smell=" + Smell + ", Taste=" + Taste + ", Finish="
+				+ Finish + ", text=" + text + ", whisky=" + whisky + ", votes=" + votes + ", user=" + user + "]";
+	}
+	
+	
 	
 	
 	

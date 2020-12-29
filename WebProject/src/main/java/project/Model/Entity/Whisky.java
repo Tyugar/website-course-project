@@ -30,6 +30,82 @@ public class Whisky {
 			)
 	private List<Opinion> opinions = new ArrayList<>();
 	
+	public Whisky() {
+	}
+	
+	public Whisky(Long id, String name, String type, String countryOfOrigin, Long alcoholVolume, String description,
+			List<Opinion> opinions) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.countryOfOrigin = countryOfOrigin;
+		this.alcoholVolume = alcoholVolume;
+		this.description = description;
+		this.opinions = opinions;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getCountryOfOrigin() {
+		return countryOfOrigin;
+	}
+
+	public void setCountryOfOrigin(String countryOfOrigin) {
+		this.countryOfOrigin = countryOfOrigin;
+	}
+
+	public Long getAlcoholVolume() {
+		return alcoholVolume;
+	}
+
+	public void setAlcoholVolume(Long alcoholVolume) {
+		this.alcoholVolume = alcoholVolume;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<Opinion> getOpinions() {
+		return opinions;
+	}
+
+	public void setOpinions(List<Opinion> opinions) {
+		this.opinions = opinions;
+	}
+
+	@Override
+	public String toString() {
+		return "Whisky [id=" + id + ", name=" + name + ", type=" + type + ", countryOfOrigin=" + countryOfOrigin
+				+ ", alcoholVolume=" + alcoholVolume + ", description=" + description + ", opinions=" + opinions + "]";
+	}
+	
 	
 	
 		
