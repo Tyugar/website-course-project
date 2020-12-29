@@ -22,9 +22,9 @@ public class Opinion {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private Date createdAt;
-	private Long Smell;
-	private Long Taste;
-	private Long Finish;
+	private int Smell;
+	private int Taste;
+	private int Finish;
 	private String text;
 	@ManyToOne
 	@JoinColumn(name = "whisky_id")
@@ -41,12 +41,12 @@ public class Opinion {
 	public Opinion() {
 	}
 	
-	public Opinion(Date createdAt, Long smell, Long taste, Long finish, String text, Whisky whisky,
+	public Opinion(Date createdAt, int i, int j, int k, String text, Whisky whisky,
 			 User user) {
 		this.createdAt = createdAt;
-		Smell = smell;
-		Taste = taste;
-		Finish = finish;
+		Smell = i;
+		Taste = j;
+		Finish = k;
 		this.text = text;
 		this.whisky = whisky;
 		this.user = user;
@@ -68,27 +68,27 @@ public class Opinion {
 		this.createdAt = createdAt;
 	}
 
-	public Long getSmell() {
+	public int getSmell() {
 		return Smell;
 	}
 
-	public void setSmell(Long smell) {
+	public void setSmell(int smell) {
 		Smell = smell;
 	}
 
-	public Long getTaste() {
+	public int getTaste() {
 		return Taste;
 	}
 
-	public void setTaste(Long taste) {
+	public void setTaste(int taste) {
 		Taste = taste;
 	}
 
-	public Long getFinish() {
+	public int getFinish() {
 		return Finish;
 	}
 
-	public void setFinish(Long finish) {
+	public void setFinish(int finish) {
 		Finish = finish;
 	}
 

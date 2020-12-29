@@ -22,7 +22,7 @@ public class Whisky {
 	private String name;
 	private String type;
 	private String countryOfOrigin;
-	private Long alcoholVolume;
+	private int alcoholVolume;
 	private String description;
 	@OneToMany(
 			mappedBy = "whisky",
@@ -33,11 +33,11 @@ public class Whisky {
 	public Whisky() {
 	}
 	
-	public Whisky(String name, String type, String countryOfOrigin, Long alcoholVolume, String description) {
+	public Whisky(String name, String type, String countryOfOrigin, int i, String description) {
 		this.name = name;
 		this.type = type;
 		this.countryOfOrigin = countryOfOrigin;
-		this.alcoholVolume = alcoholVolume;
+		this.alcoholVolume = i;
 		this.description = description;
 	}
 
@@ -73,11 +73,11 @@ public class Whisky {
 		this.countryOfOrigin = countryOfOrigin;
 	}
 
-	public Long getAlcoholVolume() {
+	public int getAlcoholVolume() {
 		return alcoholVolume;
 	}
 
-	public void setAlcoholVolume(Long alcoholVolume) {
+	public void setAlcoholVolume(int alcoholVolume) {
 		this.alcoholVolume = alcoholVolume;
 	}
 
