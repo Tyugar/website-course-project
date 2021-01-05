@@ -7,4 +7,6 @@ import project.Model.Entity.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Long>{
 
+	User findByUsername(String username);
+
 }

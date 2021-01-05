@@ -21,8 +21,11 @@ import project.Model.Entity.User;
 import project.Model.Entity.Vote;
 import project.Model.Entity.Whisky;
 import project.Model.Enum.VoteType;
+import project.Model.Repository.OpinionRepo;
 import project.Model.Repository.UserRepo;
 import project.Model.Repository.WhiskyRepo;
+import project.Service.UserService;
+import project.Service.UserServiceImpl;
 
 
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
@@ -34,11 +37,13 @@ public class ProjectApplication {
 				ConfigurableApplicationContext confiurableApplicationContext = 
 						SpringApplication.run(ProjectApplication.class, args);
 				
-				UserRepo userRepo = confiurableApplicationContext.getBean(UserRepo.class);
+				OpinionRepo opinionRepo= confiurableApplicationContext.getBean(OpinionRepo.class);
+				UserService usseService = confiurableApplicationContext.getBean(UserService.class);
 				WhiskyRepo whiskyRepo= confiurableApplicationContext.getBean(WhiskyRepo.class);
 				Date date = new Date();
-				User user1 = new User("marik1234", "1234", "dupa@wp.pl", date);
-				User user2 = new User("marianBaczal", "2137", "onet@gmail.com", date);
+				User user1 = new User("marik1234", "1234", "dupa@wp.pl", date,"ROLE_USER");
+				User user2 = new User("marianBaczal", "2137", "onet@gmail.com", date,"ROLE_USER");
+				User user3 = new User("123", "123", "onet@gmail.com", date,"ROLE_USER");
 				Whisky whisky = new Whisky("Golden losz", "jakieSaTypyXD", "Polska", 40, "bla bla bla blablablalbalbalbla");
 				Whisky whisky1 = new Whisky("Jameson", "jakieSaTypyXD", "Irlandia", 43, "aaaaaaaaaaaaaaaaaaa");
 				Whisky whisky2 = new Whisky("Jack Daniels", "jakieSaTypyXD", "USA", 40, "bbbbbbbbbbbbbbbbbbbbbbbbbbba");
@@ -46,7 +51,9 @@ public class ProjectApplication {
 				Opinion opinion1 = new Opinion(date, 3, 2, 1, "to jest berbelucha a nie whyski", whisky, user1);
 				Opinion opinion2 = new Opinion(date, 5, 5, 4, "najlepsze co pilem w zyciu!!!", whisky, user2);
 				Vote vote = new Vote(VoteType.LIKE, opinion1, user2);
-				System.out.print(vote.toString());
+				Opinion tempOpinion = new Opinion();
+
+				
 				whiskyRepo.save(whisky);
 				whiskyRepo.save(whisky1);
 				whiskyRepo.save(whisky2);
@@ -57,8 +64,19 @@ public class ProjectApplication {
 				user1.setOpinions(opinions1);
 				user2.setVotes(votes);
 				user2.setOpinions(opinions2);
-				userRepo.save(user1);
-				userRepo.save(user2);
+				usseService.save(user1);
+				usseService.save(user2);
+				usseService.save(user3);
+				
+				tempOpinion.setCreatedAt(date);
+				tempOpinion.setFinish(5);
+				tempOpinion.setSmell(5);
+				tempOpinion.setTaste(5);
+				tempOpinion.setUser(user1);
+				tempOpinion.setText("LOREM IPSUMMMMMMMMMMMMMMM");
+				tempOpinion.setWhisky(whisky3);
+				whisky3.getOpinions().add(tempOpinion);
+				whiskyRepo.save(whisky3);
 			
 	}
 }
