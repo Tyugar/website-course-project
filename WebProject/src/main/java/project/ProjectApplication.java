@@ -33,16 +33,24 @@ public class ProjectApplication {
 		
 				ConfigurableApplicationContext confiurableApplicationContext = 
 						SpringApplication.run(ProjectApplication.class, args);
+				
 				UserRepo userRepo = confiurableApplicationContext.getBean(UserRepo.class);
 				WhiskyRepo whiskyRepo= confiurableApplicationContext.getBean(WhiskyRepo.class);
 				Date date = new Date();
 				User user1 = new User("marik1234", "1234", "dupa@wp.pl", date);
 				User user2 = new User("marianBaczal", "2137", "onet@gmail.com", date);
 				Whisky whisky = new Whisky("Golden losz", "jakieSaTypyXD", "Polska", 40, "bla bla bla blablablalbalbalbla");
+				Whisky whisky1 = new Whisky("Jameson", "jakieSaTypyXD", "Irlandia", 43, "aaaaaaaaaaaaaaaaaaa");
+				Whisky whisky2 = new Whisky("Jack Daniels", "jakieSaTypyXD", "USA", 40, "bbbbbbbbbbbbbbbbbbbbbbbbbbba");
+				Whisky whisky3 = new Whisky("Jim Beam", "jakieSaTypyXD", "USA", 40, "ccccccccccccccccccccccc");
 				Opinion opinion1 = new Opinion(date, 3, 2, 1, "to jest berbelucha a nie whyski", whisky, user1);
 				Opinion opinion2 = new Opinion(date, 5, 5, 4, "najlepsze co pilem w zyciu!!!", whisky, user2);
 				Vote vote = new Vote(VoteType.LIKE, opinion1, user2);
+				System.out.print(vote.toString());
 				whiskyRepo.save(whisky);
+				whiskyRepo.save(whisky1);
+				whiskyRepo.save(whisky2);
+				whiskyRepo.save(whisky3);
 				List<Opinion> opinions1 = Arrays.asList(opinion1);
 				List<Opinion> opinions2 = Arrays.asList(opinion2);
 				List<Vote> votes= Arrays.asList(vote);				

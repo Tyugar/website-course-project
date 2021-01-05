@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Rate a whisky</title>
+	</head>
+	<body>
+		<p> dobry wieczor </p>
+		<p th:text="${name}"></p>
+		<p> whisky:</p>
+		
+		<div align="center">
+			<h1>Whisky list</h1>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Country of origin</th>
+						<th>Alcohol Volume</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="whisky: ${whiskys}"> 
+						<td> <a th:href="@{/whisky/{id}(id=${whisky.getId()})}"  th:text="${whisky.getName()}" > </td>
+						<td th:text="${whisky.getType()}" ></td>
+						<td th:text="${whisky.getCountryOfOrigin()}"></td>
+						<td th:text="${whisky.getAlcoholVolume()}  + '%'" ></td>
+						<td th:text="${whisky.getDescription()}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+<br>
+<br>
+<div align="center">
+	<form th:action="@{/add-Whisky}" th:object="${newWhisky}" method="post">
+	    <p>Name:<input type="text"  th:field="*{name}"></p>
+	    <p>Type:<input type="text" th:field="*{type}"></p>
+	    <p>Country Of Origin: <input type="text" th:field="*{countryOfOrigin}"></p>
+	    <p>Alcohol Volume: <input type="number"  th:field="*{alcoholVolume}"></p>
+	    <p>Description: <input type="text" th:field="*{Description}"></p>
+	    <p><input type="submit" value="add new whisky"></p>
+	</form>
+</div>
+	</body>
+</html>
