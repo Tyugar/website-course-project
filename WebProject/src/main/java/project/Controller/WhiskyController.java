@@ -23,16 +23,13 @@ public class WhiskyController {
 	@Autowired
 	private WhiskyRepo whiskyRepo;
 	
-	private OpinionRepo opinonRepo;
 	Whisky whisky = new Whisky();
 	
 	@GetMapping("/whisky/{id}")
 	public String ShowWhisky(@PathVariable (value = "id") long id, Model model) {
 	whisky = whiskyRepo.getOne(id);
-	Opinion newOpinion = new Opinion();
-	newOpinion.setWhisky(whisky);
 	model.addAttribute("whisky",whisky);
-	model.addAttribute("newOpinion",newOpinion);
+	model.addAttribute("newOpinion",new Opinion());
 	return "whisky";
 	
 	}
@@ -43,10 +40,9 @@ public class WhiskyController {
 		
 		Date date = new Date();
 		opinion.setCreatedAt(date);
-		
-		opinion.setWhisky(whiskyRepo.getOne(whisky.getId()));    //this is fucking bullshit
+		opinion.setWhisky(whisky);
 		whisky.getOpinions().add(opinion);
-		whiskyRepo.save(whisky);
+		whiskyRepo.save(whisky);	
 	
 		return "redirect:/whisky/" + whisky.getId().toString();
 	}
