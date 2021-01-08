@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 
 	<meta charset="utf-8">
@@ -49,7 +49,7 @@
 				<input type="text" class="input_field" placeholder="Username" th:field="*{username}" required>
 				<input type="text" class="input_field" placeholder="Email" th:field="*{email}" required>
 				<input type="password" class="input_field" placeholder="Password"  th:field="*{password}" required>
-				<input type="password" class="input_field" placeholder="Repeat password" required>
+				<input type="password" class="input_field" placeholder="Repeat password"  oninput="check(this)"required>
 				<input type="checkbox" class="check_box" required><span>I certify that I am above 18 years old</span>
 				<button type="submit" class="submit_button">Sign up</button>
 			</form>
@@ -67,16 +67,23 @@
 	var a = document.getElementById("login"); 
 	var b = document.getElementById("signup");
 	
-	function slide_l()
-	{
+	function slide_l(){
 		a.style.left="-500px";
 		b.style.left="50px";
 	}
-	function slide_r()
-	{
+	
+	function slide_r(){
 		a.style.left="50px";
 		b.style.left="550px";
 	}
+
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
 	</script>
 </body>
 </html>
