@@ -1,30 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>Rate a whisky</title>
-	</head>
-	<body>
+<head>
 
-<br>
-<br>
-	<div align="center">
-		<form th:action="@{/login}" method="post">
-		    <p>Username: <input name="username" type="text" ></p>
-		    <p>Password: <input name="password"  type="password" ></p>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-		</form>
-	</div>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Rickhouse - Log in</title>
+	<meta name="description" content="This is a website entirely devoted to whisky. Pick one, follow the opinions of others or create your own!">
+	<meta name="keywords" content="whisky,blog,review,opinions">
+	<meta name="author" content="Jakub Struzik, Rafał Soczek">
+	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+	
+	<link rel="stylesheet" href="/css/loginCSS.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+	
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+	
+</head>
 
-<br>
-<br>
-	<div align="center">
-		<form th:action="@{/register}" th:object="${newUser}" method="post">
-		    <p>Username: <input name="username" type="text" th:field="*{username}"></p>
-		    <p>email: <input name="email" type="text" th:field="*{email}"></p>
-		    <p>Password: <input name="password"  type="password" th:field="*{password}"></p>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-		</form>
+<body>
+<!-- Komentarze -->
+<div class="wrapper">
+	<div id="login_logo">
+		<div style="float:left;">
+			<img src="images/logo.png" width=99px height=100px>
+		</div>
+		<div style="float:left;text-align:center;">
+			<b>Rickhouse</b>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
-	</body>
+	<div id="log_window">
+		<div class="form_box">
+			<div class="button_box">
+				<input id="l" type="radio" name="log_switch" class="log-in" checked onclick="slide_r()"><label for="l" class="log_switch">Log In</label>
+				<input id="s" type="radio" name="log_switch" class="sign-up" onclick="slide_l()"><label for="s" class="log_switch">Sign Up</label>
+			</div>
+			<form th:action="@{/login}" method="post" id="login" class="input_data" >
+				<input name="username" type="text" class="input_field" placeholder="Username"  required>
+				<input name="password" type="password" class="input_field" placeholder="Password" required>
+				<button type="submit" class="submit_button">Log in</button>
+				<div id="login_quote">
+					<i>"Too much of anything is bad. But too much good whiskey is barely enough" - Mark Twain</i>
+				</div>
+			</form>
+			<form  th:action="@{/register}" th:object="${newUser}" method="post" id="signup" class="input_data">
+				<input type="text" class="input_field" placeholder="Username" th:field="*{username}" required>
+				<input type="text" class="input_field" placeholder="Email" th:field="*{email}" required>
+				<input type="password" class="input_field" placeholder="Password"  th:field="*{password}" required>
+				<input type="password" class="input_field" placeholder="Repeat password" required>
+				<input type="checkbox" class="check_box" required><span>I certify that I am above 18 years old</span>
+				<button type="submit" class="submit_button">Sign up</button>
+			</form>
+		</div>
+		<div class="information">
+			<ul>
+				<li id="p1"><span>Join the whisky-loving society</span><br/>log in or register new account</li>
+				<li id="p2"><span>Discover your favourite liquor</span><br/>Browse among many types and variations</li>
+				<li id="p3"><span>Follow the revievs or create your own</span><br/>Rate whisky that you like and share it with others</li>
+			</ul>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<script>
+	var a = document.getElementById("login"); 
+	var b = document.getElementById("signup");
+	
+	function slide_l()
+	{
+		a.style.left="-500px";
+		b.style.left="50px";
+	}
+	function slide_r()
+	{
+		a.style.left="50px";
+		b.style.left="550px";
+	}
+	</script>
+</body>
 </html>

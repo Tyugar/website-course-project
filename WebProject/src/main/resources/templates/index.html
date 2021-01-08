@@ -5,8 +5,7 @@
 		<title>Rate a whisky</title>
 	</head>
 	<body>
-		<p> dobry wieczor </p>
-		<p th:text="${name}"></p>
+		<p th:text=" 'witaj, ' + ${user.getName()}"></p>
 		<p> whisky:</p>
 		
 		<div align="center">
@@ -19,6 +18,7 @@
 						<th>Country of origin</th>
 						<th>Alcohol Volume</th>
 						<th>Description</th>
+						<th>Number of opinions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,6 +28,7 @@
 						<td th:text="${whisky.getCountryOfOrigin()}"></td>
 						<td th:text="${whisky.getAlcoholVolume()}  + '%'" ></td>
 						<td th:text="${whisky.getDescription()}"></td>
+						<td th:text="${whisky.opinions.size()}"></td>
 					</tr>
 				</tbody>
 			</table>

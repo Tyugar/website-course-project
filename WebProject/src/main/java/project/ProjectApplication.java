@@ -43,14 +43,19 @@ public class ProjectApplication {
 				Date date = new Date();
 				User user1 = new User("marik1234", "1234", "dupa@wp.pl", date,"ROLE_USER");
 				User user2 = new User("marianBaczal", "2137", "onet@gmail.com", date,"ROLE_USER");
-				User user3 = new User("123", "123", "onet@gmail.com", date,"ROLE_USER");
+				User user3 = new User("123", "123", "oneddt@gmail.com", date,"ROLE_USER");
 				Whisky whisky = new Whisky("Golden losz", "jakieSaTypyXD", "Polska", 40, "bla bla bla blablablalbalbalbla");
 				Whisky whisky1 = new Whisky("Jameson", "jakieSaTypyXD", "Irlandia", 43, "aaaaaaaaaaaaaaaaaaa");
 				Whisky whisky2 = new Whisky("Jack Daniels", "jakieSaTypyXD", "USA", 40, "bbbbbbbbbbbbbbbbbbbbbbbbbbba");
 				Whisky whisky3 = new Whisky("Jim Beam", "jakieSaTypyXD", "USA", 40, "ccccccccccccccccccccccc");
 				Opinion opinion1 = new Opinion(date, 3, 2, 1, "to jest berbelucha a nie whyski", whisky, user1);
-				Opinion opinion2 = new Opinion(date, 5, 5, 4, "najlepsze co pilem w zyciu!!!", whisky, user2);
-				Vote vote = new Vote(VoteType.LIKE, opinion1, user2);
+				Opinion opinion2 = new Opinion(date, 5, 5, 4, "najlepsze co pilem w zyciu!!!", whisky1, user2);
+				Opinion opinion3 = new Opinion(date, 1, 2, 3, "najlepsze co pilem w zyciu!!!", whisky2, user2);
+				Opinion opinion4 = new Opinion(date, 3, 2, 1, "najlepsze co pilem w zyciu!!!", whisky3, user2);
+				Vote vote1 = new Vote(VoteType.LIKE, opinion1, user2);
+				Vote vote2 = new Vote(VoteType.DISLIKE, opinion1, user3);
+				Vote vote3 = new Vote(VoteType.DISLIKE, opinion1, user3);
+				Vote vote4= new Vote(VoteType.DISLIKE, opinion1, user3);
 				Opinion tempOpinion = new Opinion();
 
 				
@@ -59,10 +64,12 @@ public class ProjectApplication {
 				whiskyRepo.save(whisky2);
 				whiskyRepo.save(whisky3);
 				List<Opinion> opinions1 = Arrays.asList(opinion1);
-				List<Opinion> opinions2 = Arrays.asList(opinion2);
-				List<Vote> votes= Arrays.asList(vote);				
+				List<Opinion> opinions2 = Arrays.asList(opinion2,opinion3,opinion4);
+				List<Vote> votes1= Arrays.asList(vote1);
+				List<Vote> votes2= Arrays.asList(vote2,vote3,vote4);	
 				user1.setOpinions(opinions1);
-				user2.setVotes(votes);
+				user2.setVotes(votes1);
+				user3.setVotes(votes2);
 				user2.setOpinions(opinions2);
 				usseService.save(user1);
 				usseService.save(user2);

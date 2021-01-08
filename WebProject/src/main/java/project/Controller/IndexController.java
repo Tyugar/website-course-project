@@ -1,5 +1,6 @@
 package project.Controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +26,9 @@ public class IndexController {
 	private WhiskyRepo whiskyRepo;
 	
 	@GetMapping("/")	
-	public String ShowIndex(Model model) {
+	public String ShowIndex(Model model, Principal principal) {
 			List<Whisky> whiskys = whiskyRepo.findAll();
-		 model.addAttribute("name","Strzepan");
+		 model.addAttribute("user",principal);
 		 model.addAttribute("whiskys",whiskys);
 		 model.addAttribute("newWhisky",new Whisky());
 		return "index";

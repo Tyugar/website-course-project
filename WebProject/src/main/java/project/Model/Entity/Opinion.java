@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import project.Model.Enum.VoteType;
 
 @Entity
 @Table(name = "Opinion")
@@ -37,6 +40,10 @@ public class Opinion {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@Transient
+	private Long voteResult;
+
 	
 	public Opinion() {
 	}
@@ -124,7 +131,21 @@ public class Opinion {
 		this.user = user;
 	}
 
+	public Long getVoteResult() {
+		
+		voteResult = this.votes.stream().filter(c -> c.getVoteType() == VoteType.LIKE).count() 
+				-this.votes.stream().filter(c -> c.getVoteType() == VoteType.DISLIKE).count();
 	
+		return voteResult;
+	}
+
+	public void setVoteResult(Long voteResult) {
+		this.voteResult = voteResult;
+	}
+	
+
+
+
 	@Override
 	public String toString() {
 		return "Opinion [id=" + id + ", createdAt=" + createdAt + ", Smell=" + Smell + ", Taste=" + Taste + ", Finish="

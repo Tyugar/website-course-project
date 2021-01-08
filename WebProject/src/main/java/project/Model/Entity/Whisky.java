@@ -10,12 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Whisky")
 public class Whisky {
 
-		
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -30,7 +31,19 @@ public class Whisky {
 			)
 	private List<Opinion> opinions = new ArrayList<>();
 	
+	@Transient
+	private Double averageRate; 
+	@Transient
+	private Double averageSmell; 
+	@Transient
+	private Double averageTaste;
+	@Transient
+	private Double averageFinish; 
+	
+
+
 	public Whisky() {
+		
 	}
 	
 	public Whisky(String name, String type, String countryOfOrigin, int i, String description) {
@@ -95,6 +108,55 @@ public class Whisky {
 
 	public void setOpinions(List<Opinion> opinions) {
 		this.opinions = opinions;
+	}
+
+	public double getAverageRate() {
+		if(!this.opinions.isEmpty()){
+			averageRate=(getAverageSmell()+getAverageTaste()+getAverageFinish())/3;
+			return averageRate;
+			}
+		return -1; //zrobic w thymeleafie case ktory sprawdzi jesli -1 to napisze ze ni ma 
+	}
+
+	public void setAverageRate(Double averageRate) {
+		this.averageRate = averageRate;
+	}
+
+	public double getAverageSmell() {
+		if(!this.opinions.isEmpty()){
+			averageSmell = this.opinions.stream().mapToDouble(c->c.getSmell()).sum()/opinions.size();
+			return averageSmell;
+		}
+		return -1;
+	}
+
+	public void setAverageSmell(Double averageSmell) {
+		this.averageSmell = averageSmell;
+	}
+
+	public double getAverageTaste() {
+		if(!this.opinions.isEmpty()){
+			averageTaste = this.opinions.stream().mapToDouble(c->c.getTaste()).sum()/opinions.size();
+			return averageTaste;
+		}
+		return -1;
+	}
+
+	public void setAverageTaste(Double averageTaste) {
+		this.averageTaste = averageTaste;
+	}
+
+	public double getAverageFinish() {
+		if(!this.opinions.isEmpty()){
+			averageFinish = this.opinions.stream().mapToDouble(c->c.getFinish()).sum()/opinions.size();
+			return averageFinish;
+		}
+		return -1;
+	}
+
+	public void setAverageFinish(Double averageFinish) {
+		
+		this.averageFinish = averageFinish;
 	}
 
 	@Override

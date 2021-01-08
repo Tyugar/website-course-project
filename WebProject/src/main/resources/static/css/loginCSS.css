@@ -1,0 +1,204 @@
+body
+{
+	margin: 0;
+	
+	/* Background pattern from Toptal Subtle Patterns */
+	background-image: url("/images/wood_1.png");
+
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 17px;
+	font-weight: 400;
+	line-height: 1.15;
+	text-allign: justify;
+}
+#main
+{
+	width: 100%;
+}
+.wrapper
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	justify-content: center;
+	display: flex;
+}
+#login_logo
+{
+	font-size: 100px;
+	text-align: center;
+	color: #efefef;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	width: 600px;
+}
+#log_window
+{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 220px;
+	position: absolute;
+}
+.form_box
+{
+	width: 400px;
+	height: 500px;
+	margin-right: 20px;
+	background-color: #f0eee8;
+	border: 3px solid #c29e29;
+	border-radius: 5px;
+	position: relative;
+	padding: 5px;
+	overflow: hidden;
+	float:left;
+}
+.button_box
+{
+	position: relative;
+	margin: 20px auto;
+	width: 320px;
+}
+.form_box .log_switch{
+	font-size:24px;
+	margin: 0 20px;
+	padding: 10px 20px;
+	display:inline-block;
+	cursor:pointer;
+	border-bottom: 2px solid #c29e29;
+}
+.button_box input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.form_box .log-in:checked + .log_switch,
+.form_box .sign-up:checked + .log_switch{
+	color: #1c3d0f;
+	border-radius: 5px;
+	background: linear-gradient(to left, #ddbf61, #bc9928);
+	border-bottom: 0;
+}
+.input_data
+{
+	top: 130px;
+	position: absolute;
+	width: 300px;
+	transition: .7s;
+}
+.input_field
+{
+	width: 100%;
+	border-bottom: 2px solid #c29e29;
+	border-top: 0;
+	border-right: 0;
+	border-left: 0;
+	font-size: 20px;
+	padding: 10px 0;
+	box-sizing: border-box;
+	outline: none;
+	margin-top: 10px;
+	background: transparent;
+	color: #1c3d0f;
+}
+input[type=text],
+input[type=password]
+{
+	font-family: 'Times New Roman', sans-serif;
+}
+.submit_button
+{
+	margin-top: 30px;
+	display: block;
+	height: 50px;
+	font-size: 24px;
+	width: 300px;
+	border-radius: 5px;
+	background: linear-gradient(to left, #ddbf61, #bc9928);
+	cursor: pointer;
+	color: #1c3d0f;
+	font-family: 'Times New Roman';
+	border: 0;
+	outline: none;
+}
+.submit_button:hover
+{
+	background: linear-gradient(to left, #eecf72, #cdaa39);
+}
+#login_quote
+{
+	top: 250px;
+	position: absolute;
+	color: #1c3d0f;
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+	font-size: 20px;
+}
+#login
+{
+	left: 50px;
+}
+#signup
+{
+	left: 550px;
+}
+#signup > .check_box
+{
+	margin-top: 15px;
+}
+#signup > span
+{
+	color: #1c3d0f;
+}
+.information
+{
+	height: 420px;
+	width: 750px;
+	padding: 50px 10px 40px 5px;
+	background-color: #f0eee8;
+	border: 3px solid #c29e29;
+	margin-left: 20px;
+	margin-right: auto;
+	border-radius: 5px;
+	float:left;
+}
+ul > li > span
+{
+	font-size: 36px;
+	color: #1c3d0f;
+	display:inline-block;
+	margin-top: 40px;
+}
+ul
+{
+	color: #bc9928;
+	font-size: 20px;
+	list-style-type: none;
+}
+ul > #p1:before
+{
+	font-size: 36px;
+	content: "☺";
+	margin-right: 5px;
+}
+ul > #p2:before
+{
+	font-size: 44px;
+	content: "⌕  ";
+	margin-right: 5px;
+}
+ul > #p3:before
+{
+	font-size: 36px;
+	content: "✎";
+	margin-right: 5px;
+}
+
+
+
+
+
+

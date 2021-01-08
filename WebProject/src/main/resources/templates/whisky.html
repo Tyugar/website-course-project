@@ -16,6 +16,11 @@
 						<th>Country of origin</th>
 						<th>Alcohol Volume</th>
 						<th>Description</th>
+						<th>Number of opinions</th>
+						<th>avg smell</th>
+						<th>avg taste</th>
+						<th>avg finish</th>
+						<th>avg Rate</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -25,6 +30,11 @@
 						<td th:text="${whisky.getCountryOfOrigin()}"></td>
 						<td th:text="${whisky.getAlcoholVolume()} + '%'" > %</td>
 						<td th:text="${whisky.getDescription()}"></td>
+						<td th:text="${whisky.opinions.size()}"></td>
+						<td th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 2,'POINT')}"></td>
+						<td th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 2,'POINT')}"></td>
+						<td th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 2,'POINT')}"></td>
+						<td th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 2,'POINT')}"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -46,13 +56,14 @@
 				<tbody>
 					<tr> 
 					<tr th:each="opinion: ${whisky.getOpinions()}"> 
-						<td> teraz nic nie ma bo poki nie ma logowania to wywala troszke</td>
-					<!--  <td  th:text="${opinion.getUser().getNickname()}"></td>-->	
+						
+						 <td  th:text="${opinion.getUser().getUsername()}"></td>
 						<td th:text="${opinion.getCreatedAt()}" ></td>
 						<td th:text="${opinion.getSmell()}"></td>
 						<td th:text="${opinion.getTaste()}" ></td>
 						<td th:text="${opinion.getFinish()}"></td>
 						<td th:text="${opinion.getText()}"></td>
+						<td th:text="${opinion.getVoteResult()}"></td>
 					</tr>
 				</tbody>
 			</table>
