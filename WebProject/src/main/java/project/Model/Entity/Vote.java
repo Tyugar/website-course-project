@@ -20,10 +20,10 @@ public class Vote {
 	private Long id;
 	private VoteType voteType;
 	@ManyToOne
-	@JoinColumn(name = "vote_id")
+	@JoinColumn(name = "opinionId")
 	private Opinion opinion;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userId")
 	private User user;
 	
 	public Vote() {

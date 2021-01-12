@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,9 +29,10 @@ public class Opinion {
 	private int Smell;
 	private int Taste;
 	private int Finish;
+	@Column(length = 2000)
 	private String text;
 	@ManyToOne
-	@JoinColumn(name = "whisky_id")
+	@JoinColumn(name = "whiskyId")
 	private Whisky whisky;
 	@OneToMany(
 			mappedBy = "opinion",
@@ -38,7 +40,7 @@ public class Opinion {
 			)
 	private List<Vote> votes = new ArrayList<>();
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userId")
 	private User user;
 	
 	@Transient

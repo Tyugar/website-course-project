@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import project.Model.Entity.Whisky;
 import project.Model.Repository.WhiskyRepo;
@@ -39,6 +40,15 @@ public class IndexController {
 		whiskyRepo.save(whisky);
 		return "redirect:/";
 	}
+	
+	
+	@GetMapping("/search")
+	public String search (@RequestParam(value="search")String search, Model model) {
+		List<Whisky> whiskys = whiskyRepo.findByNameContainingIgnoreCase(search);
+		model.addAttribute("whiskys",whiskys);
+		return "search";
+	}
+	
 	
 			
 }

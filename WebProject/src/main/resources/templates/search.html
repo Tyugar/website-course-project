@@ -5,20 +5,14 @@
 		<title>Rate a whisky</title>
 	</head>
 	<body>
-		<p th:text=" 'witaj, ' + ${user.getName()}"></p>
-		<p> whisky:</p>
-		
-		<div align="left">
-			<form th:action="@{/search}" method="get">
-			    <input type="search" th:name="search"  />
-			    <div class="clearfix">
-			        <button type="submit">search</button>
-			    </div>
-			</form>
-		</div>
 		<div align="center">
 			<h1>Whisky list</h1>
-			<table border="1">
+			
+			<div th:if="${whiskys!=null and whiskys.isEmpty()}">
+			<h1> Nie znaleziono wyniku wyszukiwania</h1>
+			</div>
+			<div th:if="${whiskys!=null and !whiskys.isEmpty()}">
+			<table  border="1">
 				<thead>
 					<tr>
 						<th>Name</th>
@@ -40,19 +34,10 @@
 					</tr>
 				</tbody>
 			</table>
+			</div>
 		</div>
-
-<br>
-<br>
-<div align="center">
-	<form th:action="@{/add-Whisky}" th:object="${newWhisky}" method="post">
-	    <p>Name:<input type="text"  th:field="*{name}"></p>
-	    <p>Type:<input type="text" th:field="*{type}"></p>
-	    <p>Country Of Origin: <input type="text" th:field="*{countryOfOrigin}"></p>
-	    <p>Alcohol Volume: <input type="number"  th:field="*{alcoholVolume}"></p>
-	    <p>Description: <input type="text" th:field="*{Description}"></p>
-	    <p><input type="submit" value="add new whisky"></p>
-	</form>
-</div>
+		<div align="center">
+			<h1><a th:href="@{/}">  powrut </h1>
+		</div>
 	</body>
 </html>

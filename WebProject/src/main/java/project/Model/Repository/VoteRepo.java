@@ -8,4 +8,6 @@ import project.Model.Entity.Vote;
 @Repository
 public interface VoteRepo extends JpaRepository<Vote, Long> {
 
+	
+	boolean existsByOpinionIdAndUserId(long opinion_id, long user_id);
 }

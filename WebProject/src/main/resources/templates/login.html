@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"  lang="en-US">
 <head>
 
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Rickhouse - Log in</title>
 	<meta name="description" content="This is a website entirely devoted to whisky. Pick one, follow the opinions of others or create your own!">
@@ -38,7 +38,8 @@
 				<input id="s" type="radio" name="log_switch" class="sign-up" onclick="slide_l()"><label for="s" class="log_switch">Sign Up</label>
 			</div>
 			<form th:action="@{/login}" method="post" id="login" class="input_data" >
-				<input name="username" type="text" class="input_field" placeholder="Username"  required>
+				<input name="username" type="text" class="input_field" placeholder="Username"  pattern=".{3,30}"
+				 title="this.setCustomValidity('Username have to be between 3 to 30 characters')" >
 				<input name="password" type="password" class="input_field" placeholder="Password" required>
 				<button type="submit" class="submit_button">Log in</button>
 				<div id="login_quote">

@@ -5,7 +5,6 @@
 		<title>whisky</title>
 	</head>
 	<body>
-		
 		<div align="center">
 			<h1>Whisky</h1>
 			<table border="1">
@@ -51,19 +50,25 @@
 						<th>Taste</th>
 						<th>Finish</th>
 						<th>Text</th>
+						<th>Opinon</th>
+						<th>Vote up</th>
+						
 					</tr>
 				</thead>
 				<tbody>
 					<tr> 
 					<tr th:each="opinion: ${whisky.getOpinions()}"> 
-						
-						 <td  th:text="${opinion.getUser().getUsername()}"></td>
-						<td th:text="${opinion.getCreatedAt()}" ></td>
+						<input id="opinionIdInput" th:value="${opinion.getId()}" hidden>
+						<td  th:text="${opinion.getUser().getUsername()}"></td>
+						<td th:text="${#dates.format(opinion.getCreatedAt(), 'dd-MM-yyyy HH:mm:ss')}"></td>
 						<td th:text="${opinion.getSmell()}"></td>
 						<td th:text="${opinion.getTaste()}" ></td>
 						<td th:text="${opinion.getFinish()}"></td>
 						<td th:text="${opinion.getText()}"></td>
 						<td th:text="${opinion.getVoteResult()}"></td>
+						<td><button id="buttonVoteLike"> <h1>+</h1> </button></td>
+						<td><div id="idVoteLikeResult"> </div></td>
+						
 					</tr>
 				</tbody>
 			</table>
@@ -84,5 +89,23 @@
 <div align="center">
 			<h1><a th:href="@{/}">  powrut </h1>
 </div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script> 
+		$(document).ready(function(){
+			$("#buttonVoteLike").click(function(){
+				$.ajax({
+					type : "POST",
+					url : "/voteLike",
+					data: {opinionId: $("#opinionIdInput").val()},
+					success : function(data){
+						$("#idVoteLikeResult").html(data);
+					}
+				});
+			});
+			
+		
+		});
+	</script>
 	</body>
 </html>
