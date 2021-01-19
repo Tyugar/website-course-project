@@ -17,5 +17,10 @@ public class OpinionServiceImpl implements OpinionService{
 	public Opinion findById(Long id) {
 		return opinionRepo.getOne(id);
 	}
+	
+	@Override
+	public Boolean haveAlreadyReviewed(long whiskyId, long userId) {
+		return opinionRepo.existsByWhiskyIdAndUserId(whiskyId, userId);
+	}
 
 }

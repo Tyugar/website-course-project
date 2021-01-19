@@ -74,7 +74,6 @@ public class ProjectApplication {
 				usseService.save(user1);
 				usseService.save(user2);
 				usseService.save(user3);
-				
 				tempOpinion.setCreatedAt(date);
 				tempOpinion.setFinish(5);
 				tempOpinion.setSmell(5);
@@ -85,5 +84,9 @@ public class ProjectApplication {
 				whisky3.getOpinions().add(tempOpinion);
 				whiskyRepo.save(whisky3);
 			
+				
+
+
+				
 	}
 }

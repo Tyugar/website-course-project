@@ -10,4 +10,7 @@ import project.Model.Entity.Opinion;
 public interface OpinionRepo extends JpaRepository<Opinion, Long>{
 
 	boolean existsByIdAndUserId(long id, long userId);
+	
+	boolean existsByWhiskyIdAndUserId(long whiskyId, long userId);
+	
 }

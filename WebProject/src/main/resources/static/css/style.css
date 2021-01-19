@@ -1,0 +1,555 @@
+body
+{	
+	/* Background pattern from Toptal Subtle Patterns */
+	background-image: url("/images/wood_1.png");
+    font-family: 'Times New Roman', sans-serif;
+	font-weight: 400;
+	line-height: 1.15;
+}
+.navbar-custom
+{
+	background-color: #f0eee8;
+	border-bottom: 4px solid #d4af37;
+	min-heignt: 60px;
+	padding-left: 50px;
+	padding-right: 40px;
+}
+.navbar-custom .navbar-brand
+{
+	flex:1;
+	color:black;
+}
+.navbar-custom .navbar-nav #usermenu
+{
+	text-decoration:none;
+    color:#d4af37;
+	font-size:20px;
+	color: rgba(0,0,0,.6);
+	border:0;
+}
+.navbar-custom .navbar-nav .nav-item:hover #usermenu
+{
+	color: rgba(0,0,0,1);
+	background: transparent !important;
+	margin-bottom:0;
+}
+.navbar-custom .navbar-nav .nav-link
+{
+	text-decoration:none;
+	font-size:20px;
+    color:#402008;
+	border-bottom: 2px solid #d4af37;
+	padding: 5px 12px;
+}
+.navbar-custom .nav-item:hover .nav-link
+{
+    background-color:#d4af37;
+	border-bottom: 0;
+	border-radius: 5px;
+	margin-bottom:2px;
+}
+.navbar-custom .navbar-nav
+{
+	display:flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+.navbar-custom .navbar-nav .nav-item
+{
+	display:inline-flex;
+	padding: 0 25px;
+	margin-top:5px;
+}
+.navbar-custom .navbar-nav .nav-item .fas
+{
+	color:#d4af37;
+}
+.navbar-custom .navbar-nav .search-icon
+{
+	height:40px;
+	width:240px;
+	padding:0;
+	display:flex;
+	border-radius:5px;
+}
+.navbar-custom .navbar-nav .search-icon input
+{
+	height: 100%;
+	width: 200px;
+	border: 2px solid #d4af37;
+	border-right:0;
+	border-radius:5px 0 0 5px;
+	padding-left:5px;
+}
+.navbar-custom .navbar-nav .search-icon button
+{
+	height:100%;
+	width:40px;
+	line-height:40px;
+	text-align:center;
+	background:#402008;
+	border: 2px solid #d4af37;
+	border-radius: 0 5px 5px 0;
+}
+.navbar-custom .navbar-nav .search-icon button:hover
+{
+	cursor:pointer;
+}
+.custom-toggler.navbar-toggler
+{ 
+	border-color: #402008; 
+}
+.custom-toggler .navbar-toggler-icon
+{ 
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(40, 20, 08, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
+}
+.dropdown-item:hover
+{
+	background-color:#d4af37;
+}
+
+/* Whisky site */
+.whisky-site-content
+{
+	margin-left:auto;
+	margin-right:auto;
+	max-width:900px;
+	width:60%;
+}
+.details
+{
+	/*background:#f0eee8;*/
+	background: #fff;
+	border-radius:5px;
+	margin-top:50px;
+	padding-bottom:5px;
+}
+
+.top-image
+{
+	max-width:85%;
+	width:85%;
+	margin:0 auto;
+	padding-top:20px;
+}
+.top-image .main-image
+{
+	max-width:70.5%;
+	width:70.5%;
+	height:auto;
+	margin:0 auto;
+	box-sizing: border-box;
+	position:relative;
+}
+.main-image img
+{
+	width:100%;
+	height:auto;
+}
+.name-type
+{	
+	margin:20px auto;
+	text-align:center;
+	border
+}
+#whisky-name
+{
+	font-size:32px;
+	color: #402008;
+	text-transform:uppercase;
+	font-weight:bold;
+}
+
+.description,
+.stats
+{
+	margin:1.5em auto 1em auto;
+	font-size:1.25em;
+	max-width:85%;
+	padding-bottom:1.5em;
+	border-bottom:2px solid #d4af37;
+}
+.section-title
+{
+	/*color: #402008;*/
+	color: #402008;
+}
+.param-row
+{
+	max-width:85%;
+	width:85%;
+	margin:1.5em auto 1em auto;
+	border-bottom:1px dashed rgba(180,180,180,1);
+}
+.param-row .parameter
+{
+	float:left;
+	max-width:33%;
+	width:33%;
+	margin-bottom:1.5em;
+}
+.param-row .parameter .label
+{
+	margin:0 auto;
+	text-align:center;
+	width: 100px;
+	font-size:20px;
+	padding: 10px 20px;
+	color: #402008;
+	border-radius: 5px;
+	background: linear-gradient(to left, #ddbf61, #bc9928);
+}
+.param-row .parameter .value
+{
+	margin:0 auto;
+	margin-top:0.5em;
+	text-align:center;
+	font-size:24px;
+}
+.av-rating
+{
+	display:flex;
+	flex-direction:row;
+	justify-content:space-between;
+	padding:5px 20px 5px 20px;
+}
+.overall
+{	
+	margin-top:10px;
+	font-size:24px;
+	font-weight:bold;
+}
+.fa-star
+{
+	color: rgba(20, 20, 20,.5);
+}
+.checked
+{
+	color: #d4af37;
+}
+.create-review
+{
+	border:3px solid #d4af37;
+	border-radius:5px;
+	margin-top:10px;
+	background:#f0eee8;
+	position:relative;
+	padding:25px 7.5%;
+}
+.cr-title
+{
+	font-size:24px;
+	color:#402008;
+	display:inline-block;
+	border-bottom:2px solid #d4af37;
+	margin-bottom:20px;
+}
+.cr-stars
+{
+	float:left;
+	width:40%;
+}
+.cr-text
+{
+	float:left;
+	width:60%;
+}
+.rating-group
+{
+	display:flex;
+	margin-top:5px;
+}
+.rating-group span
+{
+	font-size:24px;
+	display:inline-flex;
+	margin-right:10px;
+	width:70px
+}
+.rating__input
+{
+	position:absolute !important;
+	left:-9999px !important;
+}
+.rating__label
+{
+	cursor:pointer;
+	font-size:22px;
+}
+.rating__icon--star
+{
+	color:#d4af37;
+}
+.rating__input:checked ~ .rating__label .rating__icon--star
+{
+	color: rgba(20, 20, 20,.5);
+}
+.rating-group:hover .rating__label .rating__icon--star
+{
+	color: #d4af37;
+}
+.rating__input:hover ~ .rating__label .rating__icon--star
+{
+	color: rgba(20, 20, 20,.5);
+}
+#cr-text-text
+{
+	padding:10px;
+	border-radius:5px;
+	height:100px;
+	border:2px solid #d4af37;
+	width:100%;
+}
+.submit_button
+{
+	display:inline-block;
+	height: 30px;
+	font-size: 24px;
+	width: 200px;
+	border-radius: 5px;
+	background: linear-gradient(to left, #ddbf61, #bc9928);
+	cursor: pointer;
+	color: #402008;
+	font-family: 'Times New Roman';
+	border: 0;
+	outline: none;
+	margin-left:30%;
+}
+.submit_button:hover
+{
+	background: linear-gradient(to left, #eecf72, #cdaa39);
+}
+@media only screen and (max-width: 992px)
+{
+	.whisky-site-content
+	{
+		width: 100% !important;
+	}
+	#whisky-name
+	{
+		font-size:6vw;
+	}
+}
+.ws-reviews
+{
+	border-radius:5px;
+	border:3px solid #d4af37;
+	margin-top:10px;
+	background:#f0eee8;
+	position:relative;
+	padding:20px 7.5%;
+	padding-bottom:0;
+}
+.review_
+{
+	background:#fff;
+	padding:10px;
+	margin-bottom:25px;
+	border:2px solid #d4af37;
+	border-radius:5px;
+}
+.rev-info
+{
+	display:flex;
+	justify-content:space-between;
+}
+.rev-rates
+{
+	display:flex;
+	justify-content:space-evenly;
+	margin:10px 0;
+	font-size:1.25em;
+	color:#402008;
+}
+.rev-date
+{
+	font-size:1.25em;
+}
+.rev-note
+{
+	margin-bottom:10px;
+	color:#000;
+	font-size:1.15em;
+	text-align:justify;
+}
+.user-name a
+{
+	text-decoration:none;
+	color:#000;
+	font-size:1.25em;
+}
+.user-name a:hover
+{
+	cursor:pointer;
+}
+.user-name a:visited
+{
+	text-decoration:none;
+}
+.rev-rate
+{
+	display:inline-flex;
+}
+.rev-likes
+{
+	display:flex;
+	justify-content:justify;
+}
+.rev-likes input
+{
+	width:50px;
+	border:none;
+	background:none;
+	color:#402008;
+	font-size:1.25em;
+	margin:0 10px;
+	pointer-events:none;
+}
+.rev-likes button
+{
+	color:#777777;
+	background:none;
+	border:none;
+	font-size:1.25em;
+	padding:0 10px;
+	cursor:pointer;
+}
+.rev-likes button:active
+{
+	color:#d4af37;
+	transform: scale(1.2);
+}
+.rev-likes button:onfocus
+{
+	border:none;
+}
+.section_name h1
+{
+	font-size:48px;
+	color:#d4af37;
+	display:block;
+	padding:10px 0;
+	margin-top:20px;
+	margin-bottom:30px;
+	border-radius:5px;
+	font-weight:bold;
+}
+.wh-list
+{
+	text-align:center;
+}
+.row
+{	
+	max-width:80%;
+	margin:0 auto;
+	display:flex;
+	justify-content:space-evenly;
+}
+.row .picture
+{
+	height:200px;
+	margin-top:5px;
+	position:relative;
+	overflow:hidden;
+}
+.row .desc
+{
+	font-family: 'Roboto Slab', serif;
+	color:#402008;
+	position:relative;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:15px;
+}
+.wh-list-item
+{
+	width:300px;
+	margin:20px;
+	background:#fff;
+	border-radius:5px;
+	border:3px solid #d4af37;
+	
+}
+.picture img
+{
+	height:100%;
+	width:auto;
+	transition: transform .3s ease-in-out;
+}
+.picture img:hover
+{
+	transform:scale(1.8);
+}
+.name-title
+{
+	padding-top:5px;
+	font-size:24px;
+	padding-bottom:10px;
+}
+.info
+{
+	display:flex;
+	justify-content:space-evenly;
+	font-size:18px;
+	color:brown;
+}
+.desc .type,
+.desc .region
+{
+	display:inline-flex;
+}
+.desc .value
+{
+	padding:15px;
+	font-size:24px;
+	
+}
+.wh-list-item .desc a
+{
+	text-decoration:none;
+	color:#402008;
+}
+.wh-list-item .desc a:visited
+{
+
+}
+.wh-list-item .desc a:hover
+{
+	color:#a94007;
+}
+@media only screen and (max-width: 700px)
+{
+	.cr-stars
+	{	
+		clear:both;
+		display:block;
+	}
+	.cr-text
+	{
+		clear:both;
+		display:block;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

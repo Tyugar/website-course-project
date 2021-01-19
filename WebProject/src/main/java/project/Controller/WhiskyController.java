@@ -2,6 +2,7 @@ package project.Controller;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,6 +23,7 @@ import project.Model.Entity.User;
 import project.Model.Entity.Whisky;
 import project.Model.Repository.OpinionRepo;
 import project.Model.Repository.WhiskyRepo;
+import project.Service.OpinionService;
 import project.Service.UserService;
 import project.Service.VoteService;
 
@@ -37,15 +39,25 @@ public class WhiskyController {
 	private UserService userService;
 	
 	@Autowired
+	private OpinionService opinionService;
+	
+	@Autowired
 	private VoteService voteService;
 	
 	Whisky whisky = new Whisky();
 	
 	@GetMapping("/whisky/{id}")
-	public String ShowWhisky(@PathVariable (value = "id") long id, Model model) {
+	public String ShowWhisky(@PathVariable (value = "id") long id, Model model, Principal principal) {
+		System.out.println(id);
 	whisky = whiskyRepo.getOne(id);
+	Boolean haveAlreadyReviewed = opinionService.haveAlreadyReviewed(id, userService.findByUsername(principal.getName()).getId());
+	model.addAttribute("haveAlreadyReviewed",haveAlreadyReviewed);
+	model.addAttribute("user",principal);
 	model.addAttribute("whisky",whisky);
 	model.addAttribute("newOpinion",new Opinion());
+	
+
+	
 	return "whisky";
 	
 	}
@@ -72,7 +84,7 @@ public class WhiskyController {
 	public String voteLike(@RequestParam Long opinionId,Principal principal) {
 		long result = voteService.voteLike(opinionId, principal);
 	
-		if(result == -2) return "Glosujesz sam na siebie palo";
+		if(result == -2) return "Glosujesz sam na siebie";
 		else if(result == 1) return "Glosujesz na tak";
 		else return "error sth went wrong";	
 	}

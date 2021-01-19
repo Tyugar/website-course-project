@@ -1,111 +1,331 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8">
-		<title>whisky</title>
-	</head>
-	<body>
-		<div align="center">
-			<h1>Whisky</h1>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Country of origin</th>
-						<th>Alcohol Volume</th>
-						<th>Description</th>
-						<th>Number of opinions</th>
-						<th>avg smell</th>
-						<th>avg taste</th>
-						<th>avg finish</th>
-						<th>avg Rate</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr> 
-						<td  th:text="${whisky.getName()}"></td>
-						<td th:text="${whisky.getType()}" ></td>
-						<td th:text="${whisky.getCountryOfOrigin()}"></td>
-						<td th:text="${whisky.getAlcoholVolume()} + '%'" > %</td>
-						<td th:text="${whisky.getDescription()}"></td>
-						<td th:text="${whisky.opinions.size()}"></td>
-						<td th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 2,'POINT')}"></td>
-						<td th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 2,'POINT')}"></td>
-						<td th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 2,'POINT')}"></td>
-						<td th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 2,'POINT')}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-				<div align="center">
-			<h1>Opinions</h1>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>User</th>
-						<th>Data</th>
-						<th>Smell</th>
-						<th>Taste</th>
-						<th>Finish</th>
-						<th>Text</th>
-						<th>Opinon</th>
-						<th>Vote up</th>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr> 
-					<tr th:each="opinion: ${whisky.getOpinions()}"> 
-						<input id="opinionIdInput" th:value="${opinion.getId()}" hidden>
-						<td  th:text="${opinion.getUser().getUsername()}"></td>
-						<td th:text="${#dates.format(opinion.getCreatedAt(), 'dd-MM-yyyy HH:mm:ss')}"></td>
-						<td th:text="${opinion.getSmell()}"></td>
-						<td th:text="${opinion.getTaste()}" ></td>
-						<td th:text="${opinion.getFinish()}"></td>
-						<td th:text="${opinion.getText()}"></td>
-						<td th:text="${opinion.getVoteResult()}"></td>
-						<td><button id="buttonVoteLike"> <h1>+</h1> </button></td>
-						<td><div id="idVoteLikeResult"> </div></td>
-						
-					</tr>
-				</tbody>
-			</table>
-		</div>
-<br>
-<br>
-<div align="center">
-	<form th:action="@{/add-Opinion}" th:object="${newOpinion}" method="post">
-	   	<p>Smell:<input type="number"  th:field="*{Smell}"></p>
-	    <p>Taste<input type="number" th:field="*{Taste}"></p>
-	   	<p>Finish:<input type="number" th:field="*{Finish}"></p>
-	    <p>Text: <input type="text" th:field="*{text}"></p>
-	    <p><input type="submit" value="add new opinion"></p>
-	</form>
-</div>
-<br>
-<br>
-<div align="center">
-			<h1><a th:href="@{/}">  powrut </h1>
-</div>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en-US">
+<head>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="This is a website entirely devoted to whisky. Pick one, follow the opinions of others or create your own!">
+	<meta name="keywords" content="whisky,blog,review,opinions">
+	<meta name="author" content="Jakub Struzik, Rafał Soczek">
+	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Rickhouse</title>
+	
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	
+	<!--[if lt IE 9]>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+	
+</head>
+
+<body>
+	<header>
+	<nav class="navbar navbar-custom navbar-expand-xl">
+		
+			<a class="navbar-brand" th:href="@{/}" style="font-size:40px;"><img src="/images/Logo.png" height="50" class="d-inline-block align-bottom">Rickhouse</a>
+		
+			<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Navigation toggler">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		
+			<div class="collapse navbar-collapse" id="mainmenu">
+				<ul class="navbar-nav">
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/}"> Home </a>
+					</li>
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="whiskymenu" aria-haspopup="true"> Whisky </a>
+						<div style="background-color:#f0eee8;border:2px solid #c29e29;font-size:20px;color:#1c3d0f" class="dropdown-menu" aria-labelledby="whiskymenu">
+							<a class="dropdown-item" th:href="@{/list/scotch}"> Scotch </a>
+							<a class="dropdown-item" th:href="@{/list/rye}"> Rye </a>
+							<a class="dropdown-item" th:href="@{/list/japanese}"> Japanese </a>
+							<a class="dropdown-item" th:href="@{/list/burbon}"> Bourbon </a>
+						</div>
+					</li>
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="whiskymenu" aria-haspopup="true"> Rankings </a>
+						<div style="background-color:#f0eee8;border:2px solid #c29e29;font-size:20px;color:#1c3d0f" class="dropdown-menu" aria-labelledby="whiskymenu">
+							<a class="dropdown-item" th:href="@{/list/toprated}"> Top rated  </a>
+							<a class="dropdown-item" th:href="@{/list/mostreviewed}"> Most reviewed </a>
+							<a class="dropdown-item" th:href="@{/list/atoz}"> A-Z </a>
+						</div>
+					</li>
+					
+					<!--<li class="nav-item dropdown">
+						<a class="nav-link disabled dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="whiskymenu" aria-haspopup="true"> Reviews </a>
+						<div style="background-color:#f0eee8;border:2px solid #c29e29;font-size:20px;color:#1c3d0f" class="dropdown-menu" aria-labelledby="whiskymenu">
+							<a class="dropdown-item" href="#"> Latest reviews </a>
+							<a class="dropdown-item" href="#"> Most liked reviews </a>
+						</div>
+					</li>-->
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/contest}" > Contest </a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/contact}" > Contact us </a>
+					</li>
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false" id="usermenu" aria-haspopup="true"><i class="fas fa-user" style="font-size:20px; " th:text=" ${user.getName()}"></i>  </a>
+						<div style="background-color:#f0eee8;border:2px solid #c29e29;" class="dropdown-menu" aria-labelledby="usermenu">
+							<a class="dropdown-item" th:href="@{/}" > My profile </a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" th:href="@{/logout}" >Log out </a>
+						</div>
+					</li>
+					
+					<li id="navig-search" class="nav-item search-icon">
+					<form style="display:inline-flex" th:action="@{/search}" method="get">
+						<input type="search" th:name="search" placeholder="Search">
+						<button><span class="fas fa-search"></span></button>
+					</form>
+					</li>
+				
+				</ul>
+			
+			</div>
+		
+		</nav>
+	</header>
+	<div id="wrapper">
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="/js/bootstrap.min.js"></script>
+
+	<div class="whisky-site-content">
+		<div class="main-content">
+			<div class="details">
+				<div class="top-image">
+					<div class="main-image"><img th:src="@{${'/images/whisky_' + whisky.getId() + '.png'  }}"></div>
+					<div class="name-type">
+						<h1 id="whisky-name" th:text="${whisky.getName()}"></h1>
+					</div>
+				</div>
+				<div class="description" th:text="${whisky.getDescription()}">
+				</div>
+				<div class="param-row">
+					<div class="parameter">
+						<div class="label">Type</div>
+						<div class="value" th:text="${whisky.getType()}" > Scotch</div>
+					</div>
+					<div class="parameter">
+						<div class="label">Country</div>
+						<div class="value" th:text="${whisky.getCountryOfOrigin()}" ></div>
+					</div>
+					<div class="parameter">
+						<div class="label">ABV</div>
+						<div class="value" th:text="${whisky.getAlcoholVolume()} + '%'" ></div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="stats">
+						<div class="av-rating">
+							<div class="label">Smell</div>
+							<div class="value" th:if="${( whisky.getAverageSmell() &gt 0.99 and whisky.getAverageSmell() &lt 1.5 ) or whisky.getAverageSmell() eq 1.50}">
+								<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+							</div>
+							<div class="value" th:if="${(whisky.getAverageSmell() &gt 1.5 and whisky.getAverageSmell() &lt 2.5 ) or whisky.getAverageSmell() eq 2.50}">
+								<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+							</div>
+							<div class="value" th:if="${(whisky.getAverageSmell() &gt 2.5 and whisky.getAverageSmell() &lt 3.5 ) or whisky.getAverageSmell() eq 3.50}">
+								<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+							</div>
+							<div class="value" th:if="${(whisky.getAverageSmell() &gt 3.5 and whisky.getAverageSmell() &lt 4.5 ) or whisky.getAverageSmell() eq 4.50}">
+								<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+							</div>
+							<div class="value" th:if="${whisky.getAverageSmell() &gt 4.5 and whisky.getAverageSmell() &lt 6}">
+								<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageSmell(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+							</div>
+				</div>
+						<div class="av-rating">
+							<div class="label">Taste</div>
+								<div class="value" th:if="${( whisky.getAverageTaste() &gt 0.99 and whisky.getAverageTaste() &lt 1.5 ) or whisky.getAverageTaste() eq 1.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageTaste() &gt 1.5 and whisky.getAverageTaste() &lt 2.5 ) or whisky.getAverageTaste() eq 2.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageTaste() &gt 2.5 and whisky.getAverageTaste() &lt 3.5 ) or whisky.getAverageTaste() eq 3.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageTaste() &gt 3.5 and whisky.getAverageTaste() &lt 4.5 ) or whisky.getAverageTaste() eq 4.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${whisky.getAverageTaste() &gt 4.5 and whisky.getAverageTaste() &lt 6}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageTaste(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+								</div>					
+						</div>
+						<div class="av-rating">
+							<div class="label">Finish</div>
+								<div class="value" th:if="${( whisky.getAverageFinish() &gt 0.99 and whisky.getAverageFinish() &lt 1.5 ) or whisky.getAverageFinish() eq 1.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageFinish() &gt 1.5 and whisky.getAverageFinish() &lt 2.5 ) or whisky.getAverageFinish() eq 2.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageFinish() &gt 2.5 and whisky.getAverageFinish() &lt 3.5 ) or whisky.getAverageFinish() eq 3.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageFinish() &gt 3.5 and whisky.getAverageFinish() &lt 4.5 ) or whisky.getAverageFinish() eq 4.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${whisky.getAverageFinish() &gt 4.5 and whisky.getAverageFinish() &lt 6}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageFinish(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+								</div>	
+						</div>
+						<div class="av-rating overall">
+							<div class="label">Overall</div>
+								<div class="value" th:if="${( whisky.getAverageRate() &gt 0.99 and whisky.getAverageRate() &lt 1.5 ) or whisky.getAverageRate() eq 1.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageRate() &gt 1.5 and whisky.getAverageRate() &lt 2.5 ) or whisky.getAverageRate() eq 2.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageRate() &gt 2.5 and whisky.getAverageRate() &lt 3.5 ) or whisky.getAverageRate() eq 3.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${(whisky.getAverageRate() &gt 3.5 and whisky.getAverageRate() &lt 4.5 ) or whisky.getAverageRate() eq 4.50}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+								</div>
+								<div class="value" th:if="${whisky.getAverageRate() &gt 4.5 and whisky.getAverageRate() &lt 6}">
+									<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+								</div>	
+						</div>
+				</div>
+				
+			</div>
+			<div class="create-review" th:if="${!haveAlreadyReviewed}">
+				<form id="rev" th:action="@{/add-Opinion}" th:object="${newOpinion}" method="post">
+					<div class="cr-title">Create your own review!</div>
+					<button type="submit" class="submit_button">Submit opinion</button>
+					<div style="clear:both"></div>
+					<div class="cr-stars">
+						<div class="rating-group">
+							<span>Smell: </span>
+							<label aria-label="1 star" class="rating__label" for="rating-smell-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-smell" id="rating-smell-1" value="1" type="radio" th:field="*{Smell}">
+							<label aria-label="2 stars" class="rating__label" for="rating-smell-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-smell" id="rating-smell-2" value="2" type="radio" th:field="*{Smell}" 	>
+							<label aria-label="3 stars" class="rating__label" for="rating-smell-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-smell" id="rating-smell-3" value="3" type="radio" th:field="*{Smell}">
+							<label aria-label="4 stars" class="rating__label" for="rating-smell-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-smell" id="rating-smell-4" value="4" type="radio" th:field="*{Smell}">
+							<label aria-label="5 stars" class="rating__label" for="rating-smell-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-smell" id="rating-smell-5" value="5" type="radio" th:field="*{Smell}" >
+						</div>
+						<div class="rating-group">
+							<span>Taste: </span>
+							<label aria-label="1 star" class="rating__label" for="rating-taste-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-taste" id="rating-taste-1" value="1" type="radio" th:field="*{Taste}">
+							<label aria-label="2 stars" class="rating__label" for="rating-taste-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-taste" id="rating-taste-2" value="2" type="radio" th:field="*{Taste}">
+							<label aria-label="3 stars" class="rating__label" for="rating-taste-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-taste" id="rating-taste-3" value="3" type="radio" th:field="*{Taste}">
+							<label aria-label="4 stars" class="rating__label" for="rating-taste-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-taste" id="rating-taste-4" value="4" type="radio" th:field="*{Taste}">
+							<label aria-label="5 stars" class="rating__label" for="rating-taste-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-taste" id="rating-taste-5" value="5" type="radio" th:field="*{Taste}" checked>
+						</div>
+						<div class="rating-group">
+							<span>Finish: </span>
+							<label aria-label="1 star" class="rating__label" for="rating-finish-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-finish" id="rating-finish-1" value="1" type="radio" th:field="*{Finish}">
+							<label aria-label="2 stars" class="rating__label" for="rating-finish-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-finish" id="rating-finish-2" value="2" type="radio" th:field="*{Finish}" >
+							<label aria-label="3 stars" class="rating__label" for="rating-finish-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-finish" id="rating-finish-3" value="3" type="radio" th:field="*{Finish}">
+							<label aria-label="4 stars" class="rating__label" for="rating-finish-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-finish" id="rating-finish-4" value="4" type="radio" th:field="*{Finish}" >
+							<label aria-label="5 stars" class="rating__label" for="rating-finish-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+							<input class="rating__input" name="rating-finish" id="rating-finish-5" value="5" type="radio" th:field="*{Finish}"  checked>
+						</div>
+					</div>
+					<div class="cr-text">
+						<textarea id="cr-text-text" placeholder="Justify your opinion..." name="review-text" th:field="*{text}" ></textarea>
+					</div>
+					<div style="clear:both"></div>
+				</form>
+			</div>
+			<div class="ws-reviews">
+				
+				<div class="review_" th:each="opinion: ${whisky.getOpinions()}">
+					<input class="opinionIdInput" th:value="${opinion.getId()}" hidden>
+					<div class="rev-info">
+						<div class="user-name" style="display:inline-flex;">
+							<a href="#"> <i class="fas fa-user" style="font-size:1.25em;color:#c29e29 !important;" th:text="${opinion.getUser().getUsername()}"></i></a>
+						</div>
+						<div class="rev-date" style="display:inline-flex;" th:text="${#dates.format(opinion.getCreatedAt(), 'dd-MM-yyyy')}">
+						</div>
+					</div>
+					<div class="rev-rates">
+						<div class="rev-rate">
+							Smell: 
+								<span class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getSmell() &gt 1.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getSmell() &gt 2.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getSmell() &gt 3.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getSmell() &gt 4.5}" class="fa fa-star checked"></span>		
+						</div>
+						<div class="rev-rate">
+							Taste:						
+								<span class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getTaste() &gt 1.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getTaste() &gt 2.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getTaste() &gt 3.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getTaste() &gt 4.5}" class="fa fa-star checked"></span>					
+						</div>
+						<div class="rev-rate">
+							Finish:								
+								<span class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getFinish() &gt 1.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getFinish() &gt 2.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getFinish() &gt 3.5}" class="fa fa-star checked"></span>
+								<span th:if="${ opinion.getFinish() &gt 4.5}" class="fa fa-star checked"></span>		</div>
+					</div>
+					<div class="rev-note" th:text="${opinion.getText()}">
+					</div>
+					<div class="rev-likes">
+						<button class="likebtn">
+							<i class="fa fa-thumbs-up"></i>
+						</button>
+						<input type="number" id="number_of_likes"  name="" th:text="${opinion.getVoteResult()}">
+						<div class="idVoteLikeResult"> </div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script> 
 		$(document).ready(function(){
-			$("#buttonVoteLike").click(function(){
+			$(".likebtn").click(function(){
 				$.ajax({
 					type : "POST",
 					url : "/voteLike",
-					data: {opinionId: $("#opinionIdInput").val()},
+					data: {opinionId: $(".opinionIdInput").val()},
 					success : function(data){
-						$("#idVoteLikeResult").html(data);
+						alert($(this).attr("name"));
+						$(this).html(data);
+						//$(".idVoteLikeResult").html(data);
 					}
 				});
 			});
-			
-		
+
 		});
 	</script>
-	</body>
+</body>
 </html>

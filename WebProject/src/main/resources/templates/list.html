@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="en-US">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 
 	<meta charset="utf-8">
@@ -11,8 +11,10 @@
 	
 	<title>Rickhouse</title>
 	
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	
 	<!--[if lt IE 9]>
@@ -100,45 +102,60 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<script src="/js/bootstrap.min.js"></script>
-		
-		<div align="center">
-			<h1>Whisky list</h1>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Country of origin</th>
-						<th>Alcohol Volume</th>
-						<th>Description</th>
-						<th>Number of opinions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="whisky: ${whiskys}"> 
-						<td> <a th:href="@{/whisky/{id}(id=${whisky.getId()})}"  th:text="${whisky.getName()}" > </td>
-						<td th:text="${whisky.getType()}" ></td>
-						<td th:text="${whisky.getCountryOfOrigin()}"></td>
-						<td th:text="${whisky.getAlcoholVolume()}  + '%'" ></td>
-						<td th:text="${whisky.getDescription()}"></td>
-						<td th:text="${whisky.opinions.size()}"></td>
-					</tr>
-				</tbody>
-			</table>
+	
+	<section class="wh-list">
+		<div id="container">
+			<header class="section_name">
+				<h1 th:text="${title}"></h1></span>
+			</header>
+			<div class="row">
+   					<div class="wh-list-item" th:each="whisky: ${whiskys}">
+                        <div class="picture">
+                        <a th:href="@{/whisky/{id}(id=${whisky.getId()})}">
+                           	<img th:src="@{${'/images/whisky_' + whisky.getId() + '.png'  }}">
+
+                        </a>
+                        </div>
+					  
+                        <div class="desc">
+                            <div class="name-title" th:text="${whisky.getName()}">
+                            </div>
+                 
+                        <div class="info">
+                            <div class="type"  th:text="${whisky.getType()}">
+                            </div>
+                            <div class="region" th:text="${whisky.getCountryOfOrigin()}">
+                            </div>
+                        </div>
+							<div class="value">
+									<div class="value" th:if="${( whisky.getAverageRate() &gt 0.99 and whisky.getAverageRate() &lt 1.5 ) or whisky.getAverageRate() eq 1.50}">
+										<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+									</div>
+									<div class="value" th:if="${(whisky.getAverageRate() &gt 1.5 and whisky.getAverageRate() &lt 2.5 ) or whisky.getAverageRate() eq 2.50}">
+										<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+									</div>
+									<div class="value" th:if="${(whisky.getAverageRate() &gt 2.5 and whisky.getAverageRate() &lt 3.5 ) or whisky.getAverageRate() eq 3.50}">
+										<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked "></span><span class="fa fa-star "></span><span class="fa fa-star"></span>
+									</div>
+									<div class="value" th:if="${(whisky.getAverageRate() &gt 3.5 and whisky.getAverageRate() &lt 4.5 ) or whisky.getAverageRate() eq 4.50}">
+										<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span>
+									</div>
+									<div class="value" th:if="${whisky.getAverageRate() &gt 4.5 and whisky.getAverageRate() &lt 6}">
+										<span class="rate mr-3" th:text="${#numbers.formatDecimal(whisky.getAverageRate(), 0, 1,'POINT')}" ></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star checked"></span>
+									</div>	
+							</div>
+                        <div class="recent">
+                           <span th:if="${ whisky.getOpinions().size eq 1}" th:text="${whisky.getOpinions().size()} + ' review'"></span>
+                           <span th:if="${ whisky.getOpinions().size ne 1}" th:text="${whisky.getOpinions().size()} + ' reviews'"></span>
+                        </div>
+                    </div>
+                 </div>
+                 
+			</div>
 		</div>
-
-<br>
-<br>
-<div align="center">
-	<form th:action="@{/add-Whisky}" th:object="${newWhisky}" method="post">
-	    <p>Name:<input type="text"  th:field="*{name}"></p>
-	    <p>Type:<input type="text" th:field="*{type}"></p>
-	    <p>Country Of Origin: <input type="text" th:field="*{countryOfOrigin}"></p>
-	    <p>Alcohol Volume: <input type="number"  th:field="*{alcoholVolume}"></p>
-	    <p>Description: <input type="text" th:field="*{Description}"></p>
-	    <p><input type="submit" value="add new whisky"></p>
-	</form>
-</div>
-
+	</section>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
