@@ -25,14 +25,13 @@ public class ListController {
 	public String ShowList(@PathVariable ("param") String param, Model model, Principal principal){
 		List<Whisky> whiskys = null;
 		String title = null;
-		System.out.println(param);
 		switch(param) {
 			case "scotch":
 			case "rye":
 			case "japanese":
-			case "burbon":
+			case "bourbon":
 				 title = param.substring(0, 1).toUpperCase() + param.substring(1) + " whisky";
-				 whiskys = whiskyRepo.findByType(param);
+				 whiskys = whiskyRepo.findAllByTypeIgnoreCase(param);
 				break;
 			case "toprated":
 				 title = "Top rated whisky";

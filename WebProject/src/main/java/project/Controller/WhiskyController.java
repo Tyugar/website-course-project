@@ -48,7 +48,6 @@ public class WhiskyController {
 	
 	@GetMapping("/whisky/{id}")
 	public String ShowWhisky(@PathVariable (value = "id") long id, Model model, Principal principal) {
-		System.out.println(id);
 	whisky = whiskyRepo.getOne(id);
 	Boolean haveAlreadyReviewed = opinionService.haveAlreadyReviewed(id, userService.findByUsername(principal.getName()).getId());
 	model.addAttribute("haveAlreadyReviewed",haveAlreadyReviewed);
@@ -81,12 +80,11 @@ public class WhiskyController {
 	
 	@RequestMapping(value = "/voteLike")
 	@ResponseBody
-	public String voteLike(@RequestParam Long opinionId,Principal principal) {
+	public long voteLike(@RequestParam Long opinionId,Principal principal) {
 		long result = voteService.voteLike(opinionId, principal);
-	
-		if(result == -2) return "Glosujesz sam na siebie";
-		else if(result == 1) return "Glosujesz na tak";
-		else return "error sth went wrong";	
+		System.out.println(result);
+
+		return result;
 	}
 	
 	

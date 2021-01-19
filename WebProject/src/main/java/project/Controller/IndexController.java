@@ -43,12 +43,13 @@ public class IndexController {
 	
 	
 	@GetMapping("/search")
-	public String search (@RequestParam(value="search")String search, Model model) {
+	public String search (@RequestParam(value="search")String search, Model model, Principal principal) {
 		List<Whisky> whiskys = whiskyRepo.findByNameContainingIgnoreCase(search);
 		model.addAttribute("whiskys",whiskys);
-		return "search";
+		model.addAttribute("user",principal);
+		return "list";
+		
 	}
 	
 	
-			
 }

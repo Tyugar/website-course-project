@@ -20,7 +20,7 @@ public interface WhiskyRepo extends JpaRepository<Whisky, Long>{
 	List<Whisky> findAllByOrderByTopOverallRanking();
 	
 	
-	List<Whisky> findByType(String type);
+	List<Whisky> findAllByTypeIgnoreCase(String type);
 	
 	List<Whisky> findAllByOrderByNameAsc();
 	

@@ -10,4 +10,7 @@ public interface VoteRepo extends JpaRepository<Vote, Long> {
 
 	
 	boolean existsByOpinionIdAndUserId(long opinion_id, long user_id);
+	
+	Vote findByOpinionIdAndUserId(long opinion_id, long user_id);
+	
 }

@@ -35,12 +35,19 @@ public class VoteServiceImpl implements VoteService{
 
 		User currentUser = userService.findByUsername(principal.getName());
 		if(opinionRepo.existsByIdAndUserId(opinionId, currentUser.getId())) {
-			return -2; //stands for voting on own opinions 
+			return -1; //stands for voting on own opinions 
 		}
 		else {
+			if(voteRepo.existsByOpinionIdAndUserId(opinionId, currentUser.getId())) {
+				Vote vote = voteRepo.findByOpinionIdAndUserId(opinionId, currentUser.getId());
+				voteRepo.delete(vote);
+				return -2;  //stands for unvote 
+			}
+			else {
 			Vote vote = new Vote(VoteType.LIKE, opinionService.findById(opinionId),currentUser);
-			userService.save(currentUser);
-			return 1; //stands for votted like - just temp for example to test this shit
+			voteRepo.save(vote);
+			return -3; //stands for votted like - just temp for example to test this shit
+			}
 		}
 		
 	}

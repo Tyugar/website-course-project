@@ -33,10 +33,10 @@ public class ProjectApplication {
 
 	public static void main(String[] args) {
 		//SpringApplication.run(ProjectApplication.class, args);
-		
+			
 				ConfigurableApplicationContext confiurableApplicationContext = 
 						SpringApplication.run(ProjectApplication.class, args);
-				
+				/*
 				OpinionRepo opinionRepo= confiurableApplicationContext.getBean(OpinionRepo.class);
 				UserService usseService = confiurableApplicationContext.getBean(UserService.class);
 				WhiskyRepo whiskyRepo= confiurableApplicationContext.getBean(WhiskyRepo.class);
@@ -55,9 +55,8 @@ public class ProjectApplication {
 						"Wielu ludzi pyta mnie o to samo \"ale jak ty to robisz, skąd czerpiesz tę radość\" a ja im odpowiadam, że to proste, to umiłowanie życia, to właśnie ono sprawia, że dzisiaj na przykład buduję maszyny a jutro kto wie dlaczego by nie oddam się pracy społecznej i będę ot choćby sadzić znaczy, marchew.", whisky2, user2);
 				Opinion opinion4 = new Opinion(date, 3, 2, 1, "bardzo dobry trunek, nie powiem że nie.", whisky3, user2);
 				Vote vote1 = new Vote(VoteType.LIKE, opinion1, user2);
-				Vote vote2 = new Vote(VoteType.DISLIKE, opinion1, user3);
-				Vote vote3 = new Vote(VoteType.DISLIKE, opinion1, user3);
-				Vote vote4= new Vote(VoteType.DISLIKE, opinion1, user3);
+				Vote vote2 = new Vote(VoteType.LIKE, opinion2, user3);
+				Vote vote3 = new Vote(VoteType.LIKE, opinion4, user3);
 				Opinion tempOpinion = new Opinion();
 				whiskyRepo.save(whisky);
 				whiskyRepo.save(whisky1);
@@ -66,7 +65,7 @@ public class ProjectApplication {
 				List<Opinion> opinions1 = Arrays.asList(opinion1);
 				List<Opinion> opinions2 = Arrays.asList(opinion2,opinion3,opinion4);
 				List<Vote> votes1= Arrays.asList(vote1);
-				List<Vote> votes2= Arrays.asList(vote2,vote3,vote4);	
+				List<Vote> votes2= Arrays.asList(vote2,vote3);	
 				user1.setOpinions(opinions1);
 				user2.setVotes(votes1);
 				user3.setVotes(votes2);
@@ -84,7 +83,7 @@ public class ProjectApplication {
 				whisky3.getOpinions().add(tempOpinion);
 				whiskyRepo.save(whisky3);
 			
-				
+				*/
 
 
 				
