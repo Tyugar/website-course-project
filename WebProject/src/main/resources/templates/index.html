@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  lang="en-US">
+<html lang="en">
 <head>
 
 	<meta charset="utf-8">
@@ -12,18 +12,38 @@
 	<title>Rickhouse</title>
 	
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/css/mainsite.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
-	
+	<script>
+		jQuery(function($)
+		{
+			$.scrollTo(0);
+			
+			$('#l1').click(function(){$.scrollTo($('#H'),500);});
+			$('#l2').click(function(){$.scrollTo($('#WW'),500);});
+			$('#l3').click(function(){$.scrollTo($('#P'),500);});
+			$('#l4').click(function(){$.scrollTo($('#T'),500);});
+			$('#l5').click(function(){$.scrollTo($('#TS'),500);});
+			$('#l6').click(function(){$.scrollTo($('#TR'),500);});
+			$('#l7').click(function(){$.scrollTo($('#TB'),500);});
+			$('#l8').click(function(){$.scrollTo($('#TJ'),500);});
+			$('#l9').click(function(){$.scrollTo($('#A'),500);});
+			$('#l10').click(function(){$.scrollTo(0,500);});
+		}
+		);
+	</script>
 </head>
 
 <body>
 	<header>
-	<nav class="navbar navbar-custom navbar-expand-xl">
+		<nav class="navbar navbar-custom navbar-expand-xl">
 		
 			<a class="navbar-brand" th:href="@{/}" style="font-size:40px;"><img src="/images/Logo.png" height="50" class="d-inline-block align-bottom">Rickhouse</a>
 		
@@ -44,7 +64,7 @@
 							<a class="dropdown-item" th:href="@{/list/scotch}"> Scotch </a>
 							<a class="dropdown-item" th:href="@{/list/rye}"> Rye </a>
 							<a class="dropdown-item" th:href="@{/list/japanese}"> Japanese </a>
-							<a class="dropdown-item" th:href="@{/list/bourbon}"> Bourbon </a>
+							<a class="dropdown-item" th:href="@{/list/burbon}"> Bourbon </a>
 						</div>
 					</li>
 					
@@ -95,50 +115,118 @@
 		
 		</nav>
 	</header>
-	<div id="wrapper">
-	</div>
+	<main>
+		<div class="container">
+			<div class="row">
+				
+					<div class="col-lg-8 my-5" id="articles">
+						<article>
+							<figure class="text-right">
+								<img src="/images/wh-primary.png" alt="Whisky" style="width:100%">
+								<figcaption><i>Source: <a href="https://katalogmarzen.pl/pl/o/degustacja-whisky/bialystok"> katalogmarzen.pl </i></a></figcaption>
+							</figure>
+							<h1 id="H">History of whisky</h1>
+							<p>The earliest certain chemical distillations were by Greeks in Alexandria in the 1st century AD, but these were not distillations of alcohol. The medieval Arabs adopted the distillation technique of the Alexandrian Greeks, and written records in Arabic begin in the 9th century, but again these were not distillations of alcohol. Distilling technology passed from the medieval Arabs to the medieval Latins, with the earliest records in Latin in the early 12th century.</p>
+							<p>The earliest records of the distillation of alcohol are in Italy in the 13th century, where alcohol was distilled from wine. An early description of the technique was given by Ramon Llull (1232–1315). Its use spread through medieval monasteries, largely for medicinal purposes, such as the treatment of colic and smallpox.</p>
+							<p>The origins of whisky itself remain something of a controversy between the Irish and their Scottish cousins. The uncertainty over its past contributes to the mystery surrounding this eau de vie. The Scottish lay claim to the very first whisky based on written records. The Irish on the other hand, take a very different and, it has to be said, quite convincing view of whisky’s origins.</p>
+							<img class="img-thumbnail float-right ml-3" src="/images/history2.png">
+							<p>In an age where Europe was plagued by barbarian invasions, after the fall of the Roman Empire, Ireland became a safe haven for Christianity and monastic teaching. Irish missionaries led by Saint Patrick are said to have returned from their evangelical missions to Ireland, bringing knowledge of a distillation technique with them, which they adapted to makeuisce beatha, the Celtic term for ‘water of life’.</p>
+							<p>Although no mention is made of a grain distillate prior to the 15th century, whether using barley, wheat or oats, uisce beatha is thought, originally, to have been used for medicinal purposes. In reality, the spirit produced at the time bears no resemblance whatsoever to modern-day whisky. Closer to a fragrant liqueur of herbs and honey, it served as a kind of antibiotic, and may even have been used as an antidote to food poisoning. This undoubtedly explains the spiritual name given to this drink.</p>
+							<img class="img-thumbnail float-left mr-3" src="/images/history1.png">
+							<p>Whisky owes a significant proportion of its success to the inspirational qualities of a handful of key figures. Some sit between history and legend. Despite having no historical proof, the Irish are unanimously convinced that whisky was first made by their most famous of evangelical monks, Saint Patrick. The Scottish retaliate by resurrecting his Scottish origins. 1,500 years later, another man of the cloth, the monk Magnus Eunson, founder of the Highland Park distillery in the Orkney Islands, and famed for his smuggling exploits, serves as a further reminder of Scotland’s passionate attachment to its national nectar.</p>
+							<p>The United States also has its own founding ‘saint’ in the form of the reverend Elijah Craig who is said to have invented bourbon. Less contestably, some men played crucial roles in shaping the history of whisky. Among them is Aeneas Coffey, an inventor and engineer who gave his name to his patent still that allowed Scotland to rule supreme in the world of whisky. Scotland also owes much to Andrew Usher who used the patent still to create the first premium blends.</p>
+							<h1 id="WW">Whisky or Whiskey?</h1>
+							<p>Much is made of the word's two spellings: whisky and whiskey. There are two schools of thought on the issue. One is that the spelling difference is simply a matter of regional language convention for the spelling of a word, indicating that the spelling varies depending on the intended audience or the background or personal preferences of the writer (like the difference between color and colour; or recognize and recognise), and the other is that the spelling should depend on the style or origin of the spirit being described. There is general agreement that when quoting the proper name printed on a label, the spelling on the label should not be altered.</p>
+							<p>The spelling whiskey is common in Ireland and the United States, while whisky is used in all other whisky-producing countries. In the US, the usage has not always been consistent. From the late eighteenth century to the mid twentieth century, American writers used both spellings interchangeably until the introduction of newspaper style guides. Since the 1960s, American writers have increasingly used whiskey as the accepted spelling for aged grain spirits made in the US and whisky for aged grain spirits made outside the US. However, some prominent American brands, such as George Dickel, Maker's Mark, and Old Forester (all made by different companies), use the whisky spelling on their labels, and the Standards of Identity for Distilled Spirits, the legal regulations for spirit in the US, also use the whisky spelling throughout.</p>
+							<h1 id="P">Production</h1>
+							<p>A still for making whisky is usually made of copper, since it removes sulfur-based compounds from the alcohol that would make it unpleasant to drink. Modern stills are made of stainless steel with copper innards (piping, for example, will be lined with copper along with copper plate inlays along still walls). The simplest standard distillation apparatus is commonly known as a pot still, consisting of a single heated chamber and a vessel to collect purified alcohol.Column stills are frequently used in the production of grain whisky and are the most commonly used type of still in the production of bourbon and other American whiskeys. Column stills behave like a series of single pot stills, formed in a long vertical tube. Whereas a single pot still charged with wine might yield a vapour enriched to 40–60% alcohol, a column still can achieve a vapour alcohol content of 95.6%; an azeotropic mixture of alcohol and water.</p>			
+							<img class="img-thumbnail float-left mr-3" src="/images/production.png" alt="Production of whisky" style="max-width:40%">
+							<p>Whiskies do not mature in the bottle, only in the cask, so the "age" of a whisky is only the time between distillation and bottling. This reflects how much the cask has interacted with the whisky, changing its chemical makeup and taste. Whiskies that have been bottled for many years may have a rarity value, but are not "older" and not necessarily "better" than a more recent whisky that matured in wood for a similar time. After a decade or two, additional aging in a barrel does not necessarily improve a whisky.</p>
+							<p>While aging in wooden casks, especially American oak and French oak casks, whisky undergoes six processes that contribute to its final flavour: extraction, evaporation, oxidation, concentration, filtration, and colouration. Extraction in particular results in whisky acquiring a number of compounds, including aldehydes and acids such as vanillin, vanillic acid, and syringaldehyde. Distillers will sometimes age their whiskey in barrels previously used to age other spirits, such as rum or sherry, to impart particular flavours. Most whiskies are sold at or near an alcoholic strength of 40% abv, which is the statutory minimum in some countries[9] – although the strength can vary, and cask-strength whisky may have as much as twice that alcohol percentage.</p>
+							<h1 id="T">Types</h1>
+							<figure class="text-right">
+								<img src="/images/types.png" alt="Types of Whisky" style="width:100%">
+								<figcaption><i>Source: <a href="https://moneyinc.com/most-expensive-whiskey-bottles/"> moneyinc.com </i></a></figcaption>
+							</figure>
+							<h2 id="TS">Scotch</h2>
+							<p>Scotch whisky is malt whisky or grain whisky (or a blend of the two), made in Scotland. It must be made in a manner specified by law. As of 2018, there were 133 distilleries operating in Scotland. All Scotch whisky must be aged in oak barrels for at least three years. Any age statement on a bottle of Scotch whisky, expressed in numerical form, must reflect the age of the youngest whisky used to produce that product. A whisky with an age statement is known as guaranteed-age whisky. A whisky without an age statement is known as a no age statement whisky, the only guarantee being that all whisky contained in that bottle is at least three years old. The minimum bottling strength according to the regulation is 40% alcohol by volume.</p>
+							<h2 id="TR">Rye</h2>
+							<p>In the United States, rye whiskey is, by law, made from a mash of at least 51 percent rye. (The other ingredients in the mash are usually corn and malted barley.) It is distilled to no more than 160 U.S. proof (80% abv) and aged in charred, new oak barrels. The whiskey must be put in the barrels at no more than 125 proof (62.5% abv). Rye whiskey that has been aged for at least two years and has not been blended with other spirits may be further designated as straight, as in "straight rye whiskey".</p>
+							<p>Canadian whisky is often referred to as "rye whisky" because historically much of the content was from rye. There is no requirement for rye to be used to make Canadian whisky, and the labels "Canadian whisky", "Canadian rye whisky" and "Rye whisky" are all legally permitted, regardless of the actual composition, provided the whiskies "possess the aroma, taste and character generally attributed to Canadian whisky".</p>
+							<p>In modern practice, most Canadian whiskies are blended to achieve this character, primarily consisting of a high-proof base whisky typically made from corn or wheat and aged in used barrels combined with a small amount of flavoring whisky made from a rye mash and distilled to a lower proof. In some cases, the corn-to-rye ratio may be as high as 9:1. There are a few exceptions, such as Alberta Premium and Canadian Club Chairman's Select, which are made from 100% rye mash. Canadian whisky must be aged in wooden barrels that are not larger than 700 litres (154 imp gal; 185 US gal) for at least three years, and the barrels do not have to be new oak or charred. This requirement differs from regulations for U.S. blended whiskey, in which the bulk base spirits are not required to be aged.</p>
+							<h2 id="TB">Bourbon</h2>
+							<p>Bourbon whisky is a type of American whiskey, a barrel-aged distilled spirit made primarily from corn. The name ultimately derives from the French Bourbon dynasty, although the precise inspiration for the whiskey's name is uncertain; contenders include Bourbon County in Kentucky and Bourbon Street in New Orleans, both of which are named after the dynasty. Bourbon has been distilled since the 18th century. The name "Bourbon" was not applied until the 1850s, and the Kentucky etymology was not advanced until the 1870s. Although bourbon may be made anywhere in the United States, it is strongly associated with the American South and with Kentucky in particular.</p>
+							<figure class="text-right">
+								<img class="img-thumbnail float-right ml-3" src="/images/onrocks.png" style="max-width:30%">
+								<figcaption><i>Source: <a href="https://www.liquor.com/recipes/bourbon-old-fashioned/"> Liquor.com </i></a></figcaption>
+							</figure>
+							<p>Bourbon is served in a variety of manners, including neat, diluted with water, over ice ("on the rocks"), with cola or other beverages in simple mixed drinks, and in cocktails, including the Manhattan, Bourbon Smash, the Old Fashioned, the whiskey sour, and the mint julep. Bourbon is also used in cooking and was historically used for medicinal purposes. Bourbon can be used in a variety of confections such as a banana bourbon syrup for waffles, as a flavoring for chocolate cake, or in fruit-based desserts like grilled peach sundaes served with salted bourbon-caramel or brown sugar shortcake with warmed bourbon peaches. It is an optional ingredient in several pie recipes traditional to American cuisine including pumpkin pie, where it can be combined with brown sugar and pecans to make a sweet and crunchy topping for the creamy pumpkin pie filling. It can also be used as a flavoring in sauces for savory dishes like grit cakes with country ham served with bourbon mayonnaise, Kentucky bourbon chili or grilled flank steak.</p>
+							<h2 id="TJ">Japanese</h2>
+							<p>Japanese whisky is a style of whisky developed and produced in Japan. Whisky production in Japan began around 1870, but the first commercial production was in 1924 upon the opening of the country's first distillery, Yamazaki. Broadly speaking the style of Japanese whisky is more similar to that of Scotch whisky than other major styles of whisky.The first westerners to taste Japanese whisky were soldiers of the American Expeditionary Force Siberia who took shore leave in Hakodate in September 1918. A brand called Queen George, described by one American as a "Scotch whiskey made in Japan", was widely available. Exactly what it was is unknown, but it was quite potent and probably quite unlike Scotch whisky.</p>
+							<p>Japanese whisky is consumed either like Scotch whisky or like Japanese shōchū. The bulk of Japanese blended whisky is consumed in cocktails, notably as whisky highballs (ハイボール, haibōru) (similar to shōchū highballs, known as chūhai), while fine whisky is primarily drunk neat or on the rocks, as with Scotch whisky. Advertising for blended whisky generally features it consumed in a highball, and highballs made with Suntory's Kakubin are branded kaku-hai (カクハイ).Whisky is also commonly drunk with food, particularly in mixed drinks, especially highballs. The prevalence of mixing whisky with soda or water is particularly attributed to the hot, muggy Japanese summer, hence the popularity of long drinks.</p>
+							<h1 id="A">About the site</h1>
+							<p>Welcome. The website you are visiting was created as a project as a pass mark for the course "Internet Technologies" taught at the Faculty of Automatic Control, Electronics and Computer Science. The chosen form of the project is creation of a web application about whisky. The application is a website where logged-in users can search for the perfect whisky for themselves. One can choose from a variety of liquors, which are categorised by their type. In addition, each user has the ability to give an opinion on the drink in the form of several stars granted in three categories.These opinions are visible to other people and on their basis people can get information, for example, about which whiskies have a great taste, fruity or smoky scent, or which are most suitable for a gift.</p>
+							<p>One can agree or disagree with an opinion. If you find an opinion helpful, you can give it a Like, which will improve its positioning on the website. The most interesting thing of these planned for future improvements is the "king of reviews" badge mechanism, The badge would be given to the user whose review has received a significant number of likes. The introduction of such a system would encourage competition and bonding within the community, especially if the badges would result in material rewards.</p>
+							<p>Name of the website - Rickhouse - referrs to a tall rectangular structure designed for storing barrels containing liquors. Barrels are stored on their sides in order to prevent leakage or failure of the bottom barrels, as it often happens when barrels are stored one on another. Rickhouse means both style of storage and the building, inside which liquors are aged.</p> 
+							<figure class="text-right">
+								<img src="/images/rh.png" alt="Picture of rickhouse" style="width:100%">
+								<figcaption><i>Source: <a href="https://blog.distiller.com/weather-affects-whiskey/"> blog.distiller.com </i></a></figcaption>
+							</figure>
+						</article>
+					</div>
+					
+					<aside class="col-lg-4">
+						<div class="side-bar">
+						<h2>Table of Contents</h2>
+							<nav>
+								<ul>
+									<li>
+										<a id="l1" href="#">History of whisky</a>
+									</li>
+									<li>
+										<a id="l2" href="#">Whisky or Whiskey?</a>
+									</li>
+									<li>
+										<a id="l3" href="#">Production</a>
+									</li>
+									<li>
+										<a id="l4" href="#">Types</a>
+									</li>
+									<li>
+										<a id="l5" href="#">Scotch</a>
+									</li>
+									<li>
+										<a id="l6" href="#">Rye</a>
+									</li>
+									<li>
+										<a id="l7" href="#">Bourbon</a>
+									</li>
+									<li>
+										<a id="l8" href="#">Japanese</a>
+									</li>
+									<li>
+										<a id="l9" href="#">About the site</a>
+									</li>
+									<li id="return">
+										<a id="l10" href="#"><span class="fa fa-arrow-up"></span>Return to top<span class="fa fa-arrow-up"></span></a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</aside>
+					
+					<aside class="col-12 text-center mt-2 mb-5" id="wiki-link">
+						<a href="https://en.wikipedia.org/wiki/Whisky" target="_blank">
+							<img class="img-fluid"  src="/images/Wikipedia.png" alt="Information about whisky">
+						</a>
+					</aside>
+					
+			</div>
+		</div>
+	</main>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="/js/bootstrap.min.js"></script>
-		
-		<div align="center">
-			<h1>Whisky list</h1>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Type</th>
-						<th>Country of origin</th>
-						<th>Alcohol Volume</th>
-						<th>Description</th>
-						<th>Number of opinions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="whisky: ${whiskys}"> 
-						<td> <a th:href="@{/whisky/{id}(id=${whisky.getId()})}"  th:text="${whisky.getName()}" > </td>
-						<td th:text="${whisky.getType()}" ></td>
-						<td th:text="${whisky.getCountryOfOrigin()}"></td>
-						<td th:text="${whisky.getAlcoholVolume()}  + '%'" ></td>
-						<td th:text="${whisky.getDescription()}"></td>
-						<td th:text="${whisky.opinions.size()}"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-<br>
-<br>
-<div align="center">
-	<form th:action="@{/add-Whisky}" th:object="${newWhisky}" method="post">
-	    <p>Name:<input type="text"  th:field="*{name}"></p>
-	    <p>Type:<input type="text" th:field="*{type}"></p>
-	    <p>Country Of Origin: <input type="text" th:field="*{countryOfOrigin}"></p>
-	    <p>Alcohol Volume: <input type="number"  th:field="*{alcoholVolume}"></p>
-	    <p>Description: <input type="text" th:field="*{Description}"></p>
-	    <p><input type="submit" value="add new whisky"></p>
-	</form>
-</div>
-
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+

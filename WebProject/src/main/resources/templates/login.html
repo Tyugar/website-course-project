@@ -10,8 +10,11 @@
 	<meta name="author" content="Jakub Struzik, Rafał Soczek">
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
 	
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/loginCSS.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -20,18 +23,16 @@
 </head>
 
 <body>
-<!-- Komentarze -->
-<div class="wrapper">
-	<div id="login_logo">
-		<div style="float:left;">
-			<img src="images/logo.png" width=99px height=100px>
+<div class="container">
+	<div class="row my-4">
+		<div class="l-logo">
+			<img src="/images/logo.png" width=99px height=100px>
 		</div>
-		<div style="float:left;text-align:center;">
+		<div class="l-name">
 			<b>Rickhouse</b>
 		</div>
-		<div style="clear:both;"></div>
 	</div>
-	<div id="log_window">
+	<div class="row my-4" id="maincontent">
 		<div class="form_box">
 			<div class="button_box">
 				<input id="l" type="radio" name="log_switch" class="log-in" checked onclick="slide_r()"><label for="l" class="log_switch">Log In</label>
@@ -64,6 +65,9 @@
 		</div>
 		<div style="clear:both;"></div>
 	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="/js/bootstrap.min.js"></script>
 	<script>
 	var a = document.getElementById("login"); 
 	var b = document.getElementById("signup");

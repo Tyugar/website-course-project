@@ -1,0 +1,226 @@
+/* Main site */
+
+/* Navigation bar */
+body
+{	
+	/* Background pattern from Toptal Subtle Patterns */
+	background-image: url("/images/wood_1.png");
+    font-family: 'Times New Roman', sans-serif;
+	font-weight: 400;
+	line-height: 1.15;
+}
+.navbar-custom
+{
+	background-color: #f0eee8;
+	border-bottom: 4px solid #d4af37;
+	min-heignt: 60px;
+	padding-left: 50px;
+	padding-right: 40px;
+}
+.navbar-custom .navbar-brand
+{
+	flex:1;
+	color:black;
+}
+.navbar-custom .navbar-nav #usermenu
+{
+	text-decoration:none;
+    color:#d4af37;
+	font-size:20px;
+	color: rgba(0,0,0,.6);
+	border:0;
+}
+.navbar-custom .navbar-nav .nav-item:hover #usermenu
+{
+	color: rgba(0,0,0,1);
+	background: transparent !important;
+	margin-bottom:0;
+}
+.navbar-custom .navbar-nav .nav-link
+{
+	text-decoration:none;
+	font-size:20px;
+    color:#402008;
+	border-bottom: 2px solid #d4af37;
+	padding: 5px 12px;
+}
+.navbar-custom .nav-item:hover .nav-link
+{
+    background-color:#d4af37;
+	border-bottom: 0;
+	border-radius: 5px;
+	margin-bottom:2px;
+}
+.navbar-custom .navbar-nav
+{
+	display:flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+.navbar-custom .navbar-nav .nav-item
+{
+	display:inline-flex;
+	padding: 0 25px;
+	margin-top:5px;
+}
+.navbar-custom .navbar-nav .nav-item .fas
+{
+	color:#d4af37;
+}
+.navbar-custom .navbar-nav .search-icon
+{
+	height:40px;
+	width:240px;
+	padding:0;
+	display:flex;
+	border-radius:5px;
+}
+.navbar-custom .navbar-nav .search-icon input
+{
+	height: 100%;
+	width: 200px;
+	border: 2px solid #d4af37;
+	border-right:0;
+	border-radius:5px 0 0 5px;
+	padding-left:5px;
+}
+.navbar-custom .navbar-nav .search-icon button
+{
+	height:100%;
+	width:40px;
+	line-height:40px;
+	text-align:center;
+	background:#402008;
+	border: 2px solid #d4af37;
+	border-radius: 0 5px 5px 0;
+}
+.navbar-custom .navbar-nav .search-icon button:hover
+{
+	cursor:pointer;
+}
+.custom-toggler.navbar-toggler
+{ 
+	border-color: #402008; 
+}
+.custom-toggler .navbar-toggler-icon
+{ 
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(40, 20, 08, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
+}
+.dropdown-item:hover
+{
+	background-color:#d4af37;
+}
+/* end of Navigation bar */
+/* Main content */
+#articles
+{
+	background:#fff;
+	border:4px solid #d4af37;
+	border-radius:5px;
+	padding:15px;
+}
+#articles h1
+{
+	font-size:40px;
+	font-weight:bold;
+	color:#62422a;
+	display:inline-block;
+	border-bottom:2px solid #d4af37;
+	margin-bottom:20px;
+}
+#articles h2
+{
+	font-size:34px;
+	font-weight:bold;
+	color:#402008;
+	display:inline-block;
+	background:linear-gradient(to right,#c29e29,#e5bf48);
+	padding:5px 10px;
+	border-radius:5px;
+}
+#articles p
+{
+	font-size:1.25em;
+	text-align:justify;
+}
+/* end of Main content */
+
+/* Sidebar */
+.side-bar
+{
+	border:4px solid #d4af37;
+	border-radius:5px;
+	background-color:#f0eee8;
+}
+.side-bar h2
+{
+	display:block;
+	font-size:26px;
+	text-align:center;
+	color:#d4af37;
+	background:#402008;
+	margin-bottom:5px;
+	padding-bottom:4px;
+	padding-top:4px;
+}
+#wiki-link
+{
+	padding-left:0;
+	padding-right:0;
+}
+.side-bar ul
+{
+	list-style-type:none;
+	padding-inline-start:0;
+	margin-bottom:0;
+}
+.side-bar ul > li
+{
+	font-size:20px;
+	dispaly:block;
+	text-align:center;
+	margin-top:5px;
+	padding:5px 20px;
+}
+.side-bar ul > li > a
+{
+	text-decoration:none;
+	color:#402008;
+}
+.side-bar ul > li:hover 
+{
+	background:#d4af37;
+}
+#return a
+{
+	transition:all 0.2s ease-in-out;
+	color:#c29e29;
+}
+#return:hover a
+{
+	display:block;
+	transform: translate(0,-3px);
+	color:#f0eee8;
+}
+@media only screen and (min-width: 992px){
+	.side-bar{
+
+		margin-left:15px;
+		position:fixed;
+		top:128px;
+	}
+}
+@media only screen and (max-width: 992px){
+	.side-bar{
+		width:100%;
+	}
+	.col-lg-4{
+		padding-left:0;
+		padding-right:0;
+		margin-bottom:20px;
+	}
+}
+/* end of Sidebar */
+
+/* end of Main site */
