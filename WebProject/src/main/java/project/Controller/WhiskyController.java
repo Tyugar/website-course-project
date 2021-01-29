@@ -40,7 +40,7 @@ public class WhiskyController {
 	
 	@Autowired
 	private OpinionService opinionService;
-	
+		
 	@Autowired
 	private VoteService voteService;
 	
@@ -49,18 +49,16 @@ public class WhiskyController {
 	@GetMapping("/whisky/{id}")
 	public String ShowWhisky(@PathVariable (value = "id") long id, Model model, Principal principal) {
 	whisky = whiskyRepo.getOne(id);
-	Boolean haveAlreadyReviewed = opinionService.haveAlreadyReviewed(id, userService.findByUsername(principal.getName()).getId());
+	Boolean haveAlreadyReviewed = opinionService.haveAlreadyReviewed(
+			id,userService.findByUsername(principal.getName()).getId());
 	model.addAttribute("haveAlreadyReviewed",haveAlreadyReviewed);
 	model.addAttribute("user",principal);
 	model.addAttribute("whisky",whisky);
 	model.addAttribute("newOpinion",new Opinion());
-	
 
-	
 	return "whisky";
 	
 	}
-	
 	
 	@PostMapping("/add-Opinion")
 	public String addOpinion(@ModelAttribute Opinion opinion, Principal principal ) {

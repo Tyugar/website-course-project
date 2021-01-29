@@ -29,6 +29,7 @@ public class Opinion {
 	private int Smell;
 	private int Taste;
 	private int Finish;
+	
 	@Column(length = 2000)
 	private String text;
 	@ManyToOne

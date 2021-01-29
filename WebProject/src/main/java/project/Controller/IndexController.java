@@ -28,10 +28,7 @@ public class IndexController {
 	
 	@GetMapping("/")	
 	public String ShowIndex(Model model, Principal principal) {
-			List<Whisky> whiskys = whiskyRepo.findAll();
 		 model.addAttribute("user",principal);
-		 model.addAttribute("whiskys",whiskys);
-		 model.addAttribute("newWhisky",new Whisky());
 		return "index";
 	}
 	
