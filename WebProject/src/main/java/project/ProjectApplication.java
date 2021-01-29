@@ -32,10 +32,8 @@ import project.Service.UserServiceImpl;
 public class ProjectApplication {
 
 	public static void main(String[] args) {
-		//SpringApplication.run(ProjectApplication.class, args);
-			
-				ConfigurableApplicationContext confiurableApplicationContext = 
-						SpringApplication.run(ProjectApplication.class, args);
+	SpringApplication.run(ProjectApplication.class, args);
+
 				/*
 				OpinionRepo opinionRepo= confiurableApplicationContext.getBean(OpinionRepo.class);
 				UserService usseService = confiurableApplicationContext.getBean(UserService.class);
