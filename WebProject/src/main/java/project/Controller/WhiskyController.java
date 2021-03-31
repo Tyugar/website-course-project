@@ -26,6 +26,7 @@ import project.Model.Repository.WhiskyRepo;
 import project.Service.OpinionService;
 import project.Service.UserService;
 import project.Service.VoteService;
+import project.Service.WhiskyService;
 
 
 
@@ -33,7 +34,7 @@ import project.Service.VoteService;
 public class WhiskyController {
 	
 	@Autowired
-	private WhiskyRepo whiskyRepo;
+	private WhiskyService whiskyService;
 	
 	@Autowired
 	private UserService userService;
@@ -48,7 +49,7 @@ public class WhiskyController {
 	
 	@GetMapping("/whisky/{id}")
 	public String ShowWhisky(@PathVariable (value = "id") long id, Model model, Principal principal) {
-	whisky = whiskyRepo.getOne(id);
+	whisky = whiskyService.findById(id);
 	Boolean haveAlreadyReviewed = opinionService.haveAlreadyReviewed(
 			id,userService.findByUsername(principal.getName()).getId());
 	model.addAttribute("haveAlreadyReviewed",haveAlreadyReviewed);
@@ -70,7 +71,7 @@ public class WhiskyController {
 		opinion.setCreatedAt(date);
 		opinion.setWhisky(whisky);
 		whisky.getOpinions().add(opinion);
-		whiskyRepo.save(whisky);	
+		whiskyService.save(whisky);	
 	
 		return "redirect:/whisky/" + whisky.getId().toString();
 	}
@@ -80,7 +81,6 @@ public class WhiskyController {
 	@ResponseBody
 	public long voteLike(@RequestParam Long opinionId,Principal principal) {
 		long result = voteService.voteLike(opinionId, principal);
-		System.out.println(result);
 
 		return result;
 	}

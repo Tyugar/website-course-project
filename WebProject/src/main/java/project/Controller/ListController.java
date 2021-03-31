@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.Model.Entity.Whisky;
 import project.Model.Repository.WhiskyRepo;
+import project.Service.WhiskyService;
 
 @Controller
 public class ListController {
 
-	@Autowired
-	private WhiskyRepo whiskyRepo;
-	
-	
+	@Autowired WhiskyService whiskyService;
 
 	@RequestMapping(value = "/list/{param}")
 	public String ShowList(@PathVariable ("param") String param, Model model, Principal principal){
@@ -31,22 +29,22 @@ public class ListController {
 			case "japanese":
 			case "bourbon":
 				 title = param.substring(0, 1).toUpperCase() + param.substring(1) + " whisky";
-				 whiskys = whiskyRepo.findAllByTypeIgnoreCase(param);
+				 whiskys = whiskyService.findAllByType(param);
 				break;
 			case "toprated":
 				 title = "Top rated whisky";
-				 whiskys = whiskyRepo.findAllByOrderByTopOverallRanking();
+				 whiskys = whiskyService.findAllByTopOverallRanking();
 				break;
 			case "mostreviewed":
 				 title = "Most reviewed whisky";
-				 whiskys = whiskyRepo.findAllByOrderByMostReviewed();
+				 whiskys = whiskyService.findAllByMostReviewed();
 				break;
 			case "atoz":
 				 title = "Whisky in alphabetical order";
-				 whiskys = whiskyRepo.findAllByOrderByNameAsc();
+				 whiskys = whiskyService.findAllByAlphabeticalOrder();
 				break;
 			default:
-				 whiskys = whiskyRepo.findAll();		
+				 whiskys = whiskyService.findAll();		
 		}
 		 model.addAttribute("title", title);
 		 model.addAttribute("user",principal);

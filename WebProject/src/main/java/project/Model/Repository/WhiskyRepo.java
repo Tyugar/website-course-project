@@ -13,8 +13,8 @@ public interface WhiskyRepo extends JpaRepository<Whisky, Long>{
 	List<Whisky> findByNameContainingIgnoreCase(String search);
 
 	@Query(value = " SELECT w.* , AVG(o.smell + o.taste + o.finish) AS totalPoints " + 
-			" FROM WHISKY w, OPINION o " + 
-			" WHERE w.id = o.whisky_Id " + 
+			" FROM WHISKY w " + 
+			" LEFT JOIN OPINION o ON ( w.id = o.whisky_Id )"+
 			" GROUP BY w.id " + 
 			" ORDER BY totalPoints DESC ", nativeQuery = true)
 	List<Whisky> findAllByOrderByTopOverallRanking();
@@ -24,10 +24,10 @@ public interface WhiskyRepo extends JpaRepository<Whisky, Long>{
 	
 	List<Whisky> findAllByOrderByNameAsc();
 	
-	@Query(value = "SELECT w.* , count(o.*) AS numberOfOpinions " + 
-			"FROM WHISKY w, OPINION o " + 
-			"WHERE w.id = o.whisky_Id " + 
-			"GROUP BY w.id " + 
-			"ORDER BY numberOfOpinions  DESC ", nativeQuery = true)
+	@Query(value = "SELECT w.* , count(o.ID) AS numberOfOpinions " + 
+			" FROM WHISKY w " +
+			" LEFT JOIN OPINION o ON ( w.id = o.whisky_Id )"+
+			" GROUP BY w.id " +  
+			" ORDER BY numberOfOpinions  DESC ", nativeQuery = true)
 	List<Whisky> findAllByOrderByMostReviewed();
 }

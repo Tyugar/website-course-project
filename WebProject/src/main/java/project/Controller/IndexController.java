@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import project.Model.Entity.Whisky;
 import project.Model.Repository.WhiskyRepo;
+import project.Service.WhiskyService;
 
 @Controller
 public class IndexController {
 
 	@Autowired
 	private WhiskyRepo whiskyRepo;
+	
+	@Autowired
+	private WhiskyService whiskyService;
 	
 	@GetMapping("/")	
 	public String ShowIndex(Model model, Principal principal) {
@@ -34,19 +38,17 @@ public class IndexController {
 	
 	@PostMapping("/add-Whisky")
 	public String addWhisky(@ModelAttribute Whisky whisky) {
-		whiskyRepo.save(whisky);
+		whiskyService.save(whisky);
 		return "redirect:/";
 	}
 	
 	
 	@GetMapping("/search")
 	public String search (@RequestParam(value="search")String search, Model model, Principal principal) {
-		List<Whisky> whiskys = whiskyRepo.findByNameContainingIgnoreCase(search);
+		List<Whisky> whiskys = whiskyService.findWhiskyByName(search);
 		model.addAttribute("whiskys",whiskys);
 		model.addAttribute("user",principal);
 		return "list";
-		
 	}
-	
 	
 }
